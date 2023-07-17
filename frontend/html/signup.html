@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="bg">
+        
+        <div class="signup_form">
+            <div action="#" class="form">
+                <h1 class="form_title"> Create an Account </h1>
+
+                <div class="form_div" >
+                    <input type="text" class="form_input" placeholder=" " id="signupUsername" required>
+                    <label class="form_label">Username</label>
+                </div>
+                <p id="usernameInnerHtml" class="innerHtml"></p>
+
+                <div class="form_div" >
+                    <input type="email" class="form_input" placeholder=" " id="signupEmail" required>
+                    <label class="form_label">Email</label>
+                </div>
+                <p id="emailInnerHtml" class="innerHtml"></p>
+
+                <div class="form_div" >
+                    <input type="password" class="form_input" placeholder=" " id="enterpassword" minlength="8" required>
+                    <label class="form_label">Password</label>
+                </div>
+                <p id="passwordInnerHtml" class="innerHtml"></p>
+
+                <div class="form_div" >
+                    <input type="password" class="form_input" placeholder=" " id="reenterpassword" required>
+                    <label class="form_label">reenter Password</label>
+                </div>
+                <p id="reenterPasswordInnerHtml" class="innerHtml"></p>
+
+            
+                    <div class="login_button_class">
+                        <button class="signup-button" type="button" onclick="signup()">Create Account</button>
+                    </div>
+                    <div class="to_login_button_class">
+                        Already having an account?
+                        <a href="index.html">Login</a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/js/signup.js"></script>
+
+</body>
+
+</html>

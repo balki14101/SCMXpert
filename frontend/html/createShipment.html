@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/frontend/css/shipment.css" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  <script src="/frontend/js/createShipment.js"></script>
+
+  </head>
+
+
+  <body style="background-color: white">
+    <h1 class="form_title">Create Shipment</h1>
+
+    <div style="padding: 32px">
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="shipmentNumber"
+          required
+        />
+        <label class="form_label">Shipment Number</label>
+      </div>
+      <p id="shipmentNumberInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="containerNumber"
+          required
+        />
+        <label class="form_label">Container Number</label>
+      </div>
+      <p id="containerNumberInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <input
+          type="date"
+          class="form_input"
+          placeholder=" "
+          id="deliveryDate"
+          required
+        />
+        <label class="form_label">Expected Delivery Date</label>
+      </div>
+
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="poNumber"
+          required
+        />
+        <label class="form_label">PO Number</label>
+      </div>
+      <p id="poNumberInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="deliveryNumber"
+          required
+        />
+        <label class="form_label">Delivery Number</label>
+      </div>
+      <p id="deliveryNumberInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="nocNumber"
+          required
+        />
+        <label class="form_label">NOC Number</label>
+      </div>
+      <p id="nocNumberInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="batchId"
+          required
+        />
+        <label class="form_label">Batch ID</label>
+      </div>
+      <p id="batchIdInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <input
+          type="number"
+          class="form_input"
+          placeholder=" "
+          id="serialNumber"
+          required
+        />
+        <label class="form_label">Serial number of Goods</label>
+      </div>
+      <p id="serialNumberInnerHtml" class="innerHtml"></p>
+
+      <div class="form_div">
+        <!-- <input type="date" class="form_input" placeholder=" " id="shipmentDescription" required> -->
+        <textarea name="Text1" cols="40" rows="5" id="shipmentDescription"  placeholder=" "class="multi_text"></textarea>
+
+        <label class="form_label">Shipment Description</label>
+      </div>
+      <p id="shipmentDescriptionInnerHtml" class="innerHtml"></p>
+      <div style="display: flex;flex-direction: row;justify-content: space-around;align-items: center;">
+        <div style="width: 30%;">
+        <button class="form_button" type="button" onclick="createShipment()">Create Shipment</button>
+        <!-- <span><a href="">Forgot Password?</a></span> -->
+    </div>
+    <div style="width: 30%;">
+        <button class="form_button" type="button" onclick="clearData()">Clear Data</button>
+        <!-- <span><a href="">Forgot Password?</a></span> -->
+    </div>
+</div>
+    </div>
+  </body>
+</html>
