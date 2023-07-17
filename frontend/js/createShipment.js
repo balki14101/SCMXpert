@@ -33,14 +33,16 @@ function createShipment() {
     .then((response) => response.json())
     .then((responseJson) => {
       console.log("shipment created successfully", responseJson);
-      if (responseJson?.detail == "Token Expired") {
+
+      if (responseJson == "shipment created successfully")
+      alert(responseJson);
+      else if (responseJson?.detail == "Token Expired") {
         alert(responseJson?.detail);
         window.location.href = "/frontend/html/index.html";
-      } else if (responseJson?.detail[0]?.msg) {
+      }else if (responseJson?.detail[0]?.msg) {
         alert(responseJson?.detail[0]?.msg);
-      } else if (responseJson == "shipment created successfully") {
-        alert(responseJson);
       }
+
     })
     .catch((error) => {
       console.log(error);
