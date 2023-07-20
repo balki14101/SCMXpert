@@ -78,16 +78,17 @@ from kafka import KafkaProducer
 
 socket_connection=socket.socket()
 
-HOST = socket.gethostbyname(socket.gethostname())
+# HOST = socket.gethostbyname(socket.gethostname())
 # HOST = "root-server-1"
+HOST= "scmxpert-server-1"
 PORT = 5050
 
 
 socket_connection.connect((HOST,PORT))
 
-bootstrap_servers = 'localhost:9092'
+# bootstrap_servers = 'localhost:9092'
 # bootstrap_servers = 'root-kafka-1:9092'
-
+bootstrap_servers = 'scmxpert-kafka-1:9092'
 topicName = 'Device_Data_Stream'
 producer = KafkaProducer(bootstrap_servers= bootstrap_servers,
                          retries = 5,

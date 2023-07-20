@@ -38,7 +38,8 @@ function createShipment() {
       alert(responseJson);
       else if (responseJson?.detail == "Token Expired") {
         alert(responseJson?.detail);
-        window.location.href = "/frontend/html/index.html";
+        // window.location.href = "/frontend/html/index.html";
+        window.location.href = "../html/index.html";
       }else if (responseJson?.detail[0]?.msg) {
         alert(responseJson?.detail[0]?.msg);
       }

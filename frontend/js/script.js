@@ -78,7 +78,8 @@
             console.log({ responseJson });
             if (responseJson.message == "user already exists") {
               document.getElementById("invalidCredentials").innerHTML = "";
-              window.location.href = "/frontend/home.html";
+              // window.location.href = "/frontend/home.html";
+              window.location.href = "../home.html";
               localStorage.setItem("token", responseJson.token);
             } else alert(responseJson);
             document.getElementById("invalidCredentials").innerHTML =

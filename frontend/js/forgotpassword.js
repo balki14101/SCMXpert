@@ -59,7 +59,8 @@ function forgotPassword() {
         console.log({ responseJson });
         if (responseJson == "password updated successfully") {
           alert(responseJson);
-          window.location.href = "/frontend/html/index.html";
+          // window.location.href = "/frontend/html/index.html";
+          window.location.href = "../html/index.html";
         }
         alert(responseJson);
       })

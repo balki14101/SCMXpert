@@ -14,7 +14,9 @@ body,html{
 
 .bg {
     /* The image used */
-    background-image: url("/frontend/assets/img/background.jpg");
+    /* background-image: url("../assets/img/background.jpg"); */
+    /* background-image: url("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"); */
+    background-image: url("https://img.freepik.com/premium-photo/background-brown-cork-board-texture-close-up_77190-2560.jpg");
   
     /* Full height */
     height: 100%; 

@@ -10,10 +10,12 @@ function datastream() {
       //token verification conditions
       if (responseJson?.detail == "Token Expired") {
         alert("token expired");
-        window.location.href = "/frontend/html/index.html";
+        // window.location.href = "/frontend/html/index.html";
+        window.location.href = "../html/index.html";
       } else if (responseJson?.detail == "Could not get data") {
         alert("can't get data from db");
-        window.location.href = "/frontend/html/index.html";
+        // window.location.href = "/frontend/html/index.html";
+        window.location.href = "../html/index.html";
       }
 
       for (var i = 0; i < responseJson.length; i++) {

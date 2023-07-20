@@ -83,11 +83,11 @@ from pymongo import MongoClient
 client = MongoClient('mongodb+srv://demoUser:demoUser@cluster0.7ykbs1f.mongodb.net/?retryWrites=true&w=majority')
 
 mongodb =  client.get_database('SCMXpert')
-
 collection = mongodb["stream"]
 
-bootstrap_servers = "localhost:9092"
+# bootstrap_servers = "localhost:9092"
 # bootstrap_servers = "root-kafka-1:9092"
+bootstrap_servers = 'scmxpert-kafka-1:9092'
 topicName = 'Device_Data_Stream'
 
 class Device_Data(BaseModel):
@@ -98,9 +98,7 @@ class Device_Data(BaseModel):
     Route_To: str
 
 try:
-    consumer = KafkaConsumer(topicName, 
-                             bootstrap_servers = bootstrap_servers,
-                             auto_offset_reset = 'latest')
+    consumer = KafkaConsumer(topicName,bootstrap_servers = bootstrap_servers,auto_offset_reset = 'latest')
     
     for data in consumer:
         print(data)
@@ -113,6 +111,7 @@ try:
             Route_From= data["Route_From"],
             Route_To= data["Route_To"]
         )
+
         collection.insert_one(dict(Transport_Data))
         print(Transport_Data)
 

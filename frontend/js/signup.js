@@ -70,7 +70,8 @@ function signup() {
           console.log({ responseJson });
           if (responseJson == "user is created successfully") {
             alert(responseJson);
-            window.location.href = "/frontend/html/index.html";
+            // window.location.href = "/frontend/html/index.html";
+            window.location.href = "../html/index.html";
           }
           alert(responseJson);
         })

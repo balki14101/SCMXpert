@@ -20,9 +20,9 @@ print("socket created")
 server.bind(ADDR)    
 
 server.listen(2)
-print(f"[LISTENING] Server is listening on {SERVER}")
+# print(f'[LISTENING] Server is listening on {SERVER}')
 conn, addr = server.accept()
-print(f'CONNECTION FROM {addr} HAS BEEN ESTABLISHED')
+# print(f'CONNECTION FROM {addr} HAS BEEN ESTABLISHED')
 connected = True
 
 while connected:
