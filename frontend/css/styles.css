@@ -14,10 +14,8 @@ body,html{
 
 .bg {
     /* The image used */
-    /* background-image: url("../assets/img/background.jpg"); */
-    /* background-image: url("https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"); */
-    background-image: url("https://img.freepik.com/premium-photo/background-brown-cork-board-texture-close-up_77190-2560.jpg");
-  
+    background-image: url("../assets/img/background.jpg");
+
     /* Full height */
     height: 100%; 
   
@@ -215,6 +213,9 @@ body,html{
 .form_input_captcha:focus{
     border: .1em solid rgb(28,164,248);
 }
+/* #invalidCredentials{
+    margin-top: 32px;
+} */
 
 .login_form #captcha .preview span{
     display: inline-block;
@@ -331,3 +332,17 @@ body,html{
     /* background-color:red; */
 }
 
+.hero {
+    --color-default: #ffffff;
+    --color-default-rgb: 255, 255, 255;
+    --color-background: #000000;
+    --color-background-rgb: 0, 0, 0;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    /* padding: 160px 0 80px 0; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }

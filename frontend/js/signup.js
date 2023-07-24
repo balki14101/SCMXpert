@@ -15,44 +15,8 @@ function signup() {
   document.getElementById("passwordInnerHtml").innerHTML = " ";
   document.getElementById("reenterPasswordInnerHtml").innerHTML = " ";
 
-  var validRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  console.log("password", signupPasswordValue);
-  console.log("reenterpassword", signupReenterPasswordValue);
-
-  //validating username
-  if (signupUsernameValue == "") {
-    document.getElementById("usernameInnerHtml").innerHTML =
-      "please enter the username";
-  }
-
-  //validating email
-  if (signupEmailValue == "") {
-    document.getElementById("emailInnerHtml").innerHTML =
-      "please enter the email";
-  } else if (signupEmailValue.match(validRegex)) {
-    validEmail = true;
-    null;
-  } else
-    document.getElementById("emailInnerHtml").innerHTML =
-      "please enter the valid email";
-
-  //validating password
-  if (signupPasswordValue == "" || signupReenterPasswordValue == "") {
-    document.getElementById("passwordInnerHtml").innerHTML =
-      "please enter the password";
-    document.getElementById("reenterPasswordInnerHtml").innerHTML =
-      "please re-enter the password";
-  } else if (signupPasswordValue === signupReenterPasswordValue) {
-    validPassword = true;
-  } else
-    document.getElementById("reenterPasswordInnerHtml").innerHTML =
-      "please enter the same password";
-
-  if (validEmail == true && validPassword == true) {
-    console.log("usernname and email is not null");
-    if (signupPasswordValue === signupReenterPasswordValue) {
+  
+  
       fetch("http://127.0.0.1:8000/createUser", {
         method: "POST",
         headers: {
@@ -63,9 +27,20 @@ function signup() {
           name: signupUsernameValue,
           email: signupEmailValue,
           password: signupPasswordValue,
+          reenterpassword: signupReenterPasswordValue,
         }),
       })
-        .then((response) => response.json())
+        // .then((response) => response.json())
+        .then(response => {
+          if(response.ok){
+            console.log("success signup",response)
+            return response.json()
+          } 
+          console.log("fail signup",response)
+          
+          return response.json()
+          .then(response => {throw new Error(response.detail)})
+        })
         .then((responseJson) => {
           console.log({ responseJson });
           if (responseJson == "user is created successfully") {
@@ -76,13 +51,24 @@ function signup() {
           alert(responseJson);
         })
         .catch((error) => {
-          console.log(error);
-          alert("error catch");
+          // console.log(error);
+          console.log("error",error.message);
+          if (error.message == "The Username field is required" || error.message == "The Username must be letters only") {
+            document.getElementById("usernameInnerHtml").innerHTML =error.message;
+          }
+          else if (error.message == "The email field is required" || error.message == "The email address is not valid") 
+              document.getElementById("emailInnerHtml").innerHTML =error.message;
+          else if (error.message == "The password field is required" || error.message == "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter, and must be 6-16 characters") 
+              document.getElementById("passwordInnerHtml").innerHTML =error.message;   
+          else if (error.message == "Password Mismatching") 
+              document.getElementById("reenterPasswordInnerHtml").innerHTML =error.message;              
+
+          alert(error.message);
         });
       //   window.location.href = "/frontend/html/index.html";
-    } else {
-      document.getElementById("reenterPasswordInnerHtml").innerHTML =
-        "please enter the same password";
-    }
-  } else alert("kjsdfnjsdf");
+    // } 
+    // else {
+    //   document.getElementById("reenterPasswordInnerHtml").innerHTML =
+    //     "please enter the same password";
+    // }
 }

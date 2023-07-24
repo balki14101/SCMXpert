@@ -60,4 +60,8 @@ function clearData() {
   document.getElementById("batchId").value = "";
   document.getElementById("serialNumber").value = "";
   document.getElementById("shipmentDescription").value = "";
+
+  
+  document.getElementById("shipmentNumberInnerHtml").innerHTML = " sohdfjlkl";
+  document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " sohdfjlkl";
 }

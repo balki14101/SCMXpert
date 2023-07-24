@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   frontend:
-    image: docker-frontend:v1
+    image: docker-frontend:v2
     depends_on:
       - backend
     ports:
@@ -50,22 +50,22 @@ services:
     depends_on:
       - zookeeper
         
-  server:
-    image: docker-server:v1
-    ports:
-      - 5050:5050
+  # server:
+  #   image: docker-server:v1
+  #   ports:
+  #     - 5050:5050
 
-  producer:
-    image: docker-producer:v1
-    depends_on:
-      kafka:
-        condition: service_healthy
+  # producer:
+  #   image: docker-producer:v1
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
 
-  consumer:
-    image: docker-consumer:v1
-    depends_on:
-      kafka:
-        condition: service_healthy
+  # consumer:
+  #   image: docker-consumer:v1
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
     
 
 

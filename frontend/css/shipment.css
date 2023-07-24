@@ -42,17 +42,20 @@ body,html{
 }
 
 .form_title{
-    font-weight: 300;
+    font-weight: 500;
     margin-bottom: 24px;
     text-align: center;
-    font-family:cursive
+    color: #fff;
+    /* font-family:cursive; */
+    /* margin-top: 64px; */
 }
 
 .form_div{
     position: relative;
     height: 3em;
-    /* margin-bottom: 12px */
-    margin-top: 12px;
+    margin-bottom: 12px;
+    /* margin-top: 12px; */
+    width: 40%;
 
 }
 
@@ -165,12 +168,21 @@ body,html{
 }
 
 
+.row{
+    /* background-color: brown;  */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+}
 
 .innerHtml{
     /* margin-bottom: 16px; */
     color: red;
     padding-left: 8px;
-    /* margin-top: -12px; */
+
+    margin-top: 50px;
     /* background-color:red; */
 }
 

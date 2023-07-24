@@ -39,6 +39,7 @@
 
     gencaptcha();
     setcaptcha();
+
   }
   initCaptcha();
 
@@ -48,18 +49,18 @@
     let enteredPassword = document.getElementById("pwd").value;
 
     //validating email & password
-    if (enteredEmail == "") {
-      document.getElementById("emailInnerHtml").innerHTML =
-        "please enter the email";
-    }
+    // if (enteredEmail == "") {
+    //   document.getElementById("emailInnerHtml").innerHTML =
+    //     "please enter the email";
+    // }
 
-    if (enteredPassword == "") {
-      document.getElementById("passwordInnerHtml").innerHTML =
-        "please enter the password";
-    } else document.getElementById("passwordInnerHtml").innerHTML = "";
+    // if (enteredPassword == "") {
+    //   document.getElementById("passwordInnerHtml").innerHTML =
+    //     "please enter the password";
+    // } else document.getElementById("passwordInnerHtml").innerHTML = "";
 
-    if (enteredEmail.match(validRegex)) {
-      document.getElementById("emailInnerHtml").innerHTML = "";
+    // if (enteredEmail.match(validRegex)) {
+    //   document.getElementById("emailInnerHtml").innerHTML = "";
 
       if (validCaptcha) {
         fetch("http://127.0.0.1:8000/loginUser", {
@@ -73,26 +74,48 @@
             password: enteredPassword,
           }),
         })
-          .then((response) => response.json())
+          .then(response => {
+            if(response.ok){
+              console.log("success",response)
+              return response.json()
+            } 
+            console.log("fail",response)
+            
+            return response.json()
+            .then(response => {throw new Error(response.detail)})
+          })
           .then((responseJson) => {
             console.log({ responseJson });
+            console.log("status",responseJson);
             if (responseJson.message == "user already exists") {
+              document.getElementById("emailInnerHtml").innerHTML =""
+            document.getElementById("passwordInnerHtml").innerHTML ="";
               document.getElementById("invalidCredentials").innerHTML = "";
               // window.location.href = "/frontend/home.html";
-              window.location.href = "../home.html";
+              // window.location.href = "/frontend/html/home.html";
+              window.location.href = "../html/home.html";
               localStorage.setItem("token", responseJson.token);
-            } else alert(responseJson);
-            document.getElementById("invalidCredentials").innerHTML =
-              "invalid credentials";
+            } 
+            else{
+              document.getElementById("emailInnerHtml").innerHTML =""
+            document.getElementById("passwordInnerHtml").innerHTML ="";
+            document.getElementById("invalidCredentials").innerHTML ="invalid credentials";
+            }
+            
           })
           .catch((error) => {
-            console.log(error);
-            alert("error catch");
+            console.log("error",error.message);
+            if (error.message == "The email field is required" || error.message == "The email address is not valid") {
+              document.getElementById("emailInnerHtml").innerHTML =error.message;
+            }
+            else if (error.message == "The password field is required" || error.message == "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter, and must be 6-16 characters") 
+                document.getElementById("passwordInnerHtml").innerHTML =error.message;
+
           });
       }
-    } else
-      document.getElementById("emailInnerHtml").innerHTML =
-        "please enter the valid email";
+    // } else
+    //   document.getElementById("emailInnerHtml").innerHTML =
+    //     "please enter the valid email";
   }
 
   document

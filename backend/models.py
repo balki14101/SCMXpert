@@ -11,6 +11,7 @@ class User(BaseModel):
     name:str
     email: str
     password: str
+    reenterpassword:str
 
 class Login(BaseModel):
     email: str

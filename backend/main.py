@@ -1,5 +1,6 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI,HTTPException,status,Request
+from validations import loginValid,registerValid
 from mongo import mongodb
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -47,7 +48,7 @@ def get_users():
 @app.post("/createUser")
 def create_user(user:User):
     print("creating a user",user)
-
+    registerValid(user)
     try:
         if (user.name != '') and (user.email != '') and (user.password != ''):
             findEmail = mongodb['users'].find_one({'email':user.email})
@@ -72,10 +73,11 @@ def create_user(user:User):
 async def login_user(login_user:Login):
     print("entered credentials",login_user)
 
+    loginValid(login_user)
     try:
         data = mongodb['users'].find_one({'email':login_user.email})
         print(data)
-
+        # if check:
         if data != None:
             passwordCheck = pwd_context.verify(login_user.password, data['password'])
             print(passwordCheck)

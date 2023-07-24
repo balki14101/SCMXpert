@@ -35,7 +35,8 @@ function datastream() {
           "</td>" +
           "<td>" +
           responseJson[i].Route_To +
-          "</td>" +
+          "</td>" 
+          +
           "</tr>";
         document.getElementById("result").innerHTML += row;
       }
