@@ -28,6 +28,7 @@ function signup() {
           email: signupEmailValue,
           password: signupPasswordValue,
           reenterpassword: signupReenterPasswordValue,
+          role:"User"
         }),
       })
         // .then((response) => response.json())
@@ -58,7 +59,7 @@ function signup() {
           }
           else if (error.message == "The email field is required" || error.message == "The email address is not valid") 
               document.getElementById("emailInnerHtml").innerHTML =error.message;
-          else if (error.message == "The password field is required" || error.message == "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter, and must be 6-16 characters") 
+          else if (error.message == "The password field is required" || error.message == "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter,and 1 special character and must be 6-16 characters") 
               document.getElementById("passwordInnerHtml").innerHTML =error.message;   
           else if (error.message == "Password Mismatching") 
               document.getElementById("reenterPasswordInnerHtml").innerHTML =error.message;              

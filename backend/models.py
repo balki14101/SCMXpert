@@ -12,10 +12,17 @@ class User(BaseModel):
     email: str
     password: str
     reenterpassword:str
+    role:str
 
 class Login(BaseModel):
     email: str
     password: str
+
+class ResetPassword(BaseModel):
+    email: str
+    password: str
+    reenteredpassword:str
+
 
 class Device_Data(BaseModel):
     Battery_Level= str,
@@ -25,15 +32,17 @@ class Device_Data(BaseModel):
     Route_To= str
 
 class ship(BaseModel):
-    Shipment_Number: int
-    Container_Number: int
+    Shipment_Number: str
+    Container_Number: str
     Delivery_Date:str
-    PO_Number: int
-    Delivery_Number: int
-    NOC_Number: int    
-    Batch_Id: int    
-    Serial_Number: int    
+    PO_Number: str
+    Delivery_Number: str
+    NOC_Number: str    
+    Batch_Id: str    
+    Serial_Number: str    
     Shipment_Description: str
+    Created_by:str
+    User_Id:str
     
 # def shipmentEntity(ship) -> dict:
 #     return{

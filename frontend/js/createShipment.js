@@ -11,6 +11,17 @@ function createShipment() {
     "shipmentDescription"
   ).value;
 
+
+  document.getElementById("shipmentNumberInnerHtml").innerHTML = " ";
+  document.getElementById("containerNumberInnerHtml").innerHTML = " ";
+  document.getElementById("deliveryDateInnerHtml").innerHTML = " ";
+  document.getElementById("poNumberInnerHtml").innerHTML = " ";
+  document.getElementById("deliveryNumberInnerHtml").innerHTML = " ";
+  document.getElementById("nocNumberInnerHtml").innerHTML = " ";
+  document.getElementById("batchIdInnerHtml").innerHTML = " ";
+  document.getElementById("serialNumberInnerHtml").innerHTML = " ";
+  document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " ";
+
   fetch("http://127.0.0.1:8000/createShipment", {
     method: "POST",
     headers: {
@@ -28,9 +39,22 @@ function createShipment() {
       Batch_Id: batchIdValue,
       Serial_Number: serialNumberValue,
       Shipment_Description: shipmentDescriptionValue,
+      Created_by:localStorage.getItem("role"),
+      User_Id:localStorage.getItem("userId")
     }),
   })
-    .then((response) => response.json())
+    // .then((response) => response.json())
+    .then(response => {
+      if(response.ok){
+        console.log("success signup",response)
+        return response.json()
+      } 
+      console.log("fail signup",response)
+      
+      return response.json()
+      .then(response => {throw new Error(response.detail)})
+    })
+
     .then((responseJson) => {
       console.log("shipment created successfully", responseJson);
 
@@ -46,7 +70,40 @@ function createShipment() {
 
     })
     .catch((error) => {
-      console.log(error);
+      console.log("error",error.message);
+      if (error.message == "Token Expired"){
+        alert(error?.message);
+        // window.location.href = "/frontend/html/index.html";
+        window.location.href = "../html/index.html"; 
+      }
+     else if (error.message == "Shipment_Number field is required and must be integer") 
+            document.getElementById("shipmentNumberInnerHtml").innerHTML =error.message;
+
+        else if (error.message == "Container_Number field is required and must be integer") 
+        document.getElementById("containerNumberInnerHtml").innerHTML =error.message;    
+        
+        else if (error.message == "Delivery_Date field is required and must be integer") 
+        document.getElementById("deliveryDateInnerHtml").innerHTML =error.message;    
+
+        else if (error.message == "PO_Number field is required and must be integer") 
+        document.getElementById("poNumberInnerHtml").innerHTML =error.message; 
+
+        else if (error.message == "Delivery_Number field is required and must be integer") 
+        document.getElementById("deliveryNumberInnerHtml").innerHTML =error.message; 
+
+        else if (error.message == "NOC_Number field is required and must be integer") 
+        document.getElementById("nocNumberInnerHtml").innerHTML =error.message; 
+
+        else if (error.message == "Batch_Id field is required and must be integer") 
+        document.getElementById("batchIdInnerHtml").innerHTML =error.message; 
+
+        else if (error.message == "Serial_Number field is required and must be integer") 
+        document.getElementById("serialNumberInnerHtml").innerHTML =error.message;  
+        
+        else if (error.message == "Shipment_Description field is required") 
+        document.getElementById("shipmentDescriptionInnerHtml").innerHTML =error.message;               
+       
+
       alert("catch error while creating shipment");
     });
 }
@@ -62,6 +119,6 @@ function clearData() {
   document.getElementById("shipmentDescription").value = "";
 
   
-  document.getElementById("shipmentNumberInnerHtml").innerHTML = " sohdfjlkl";
-  document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " sohdfjlkl";
+  // document.getElementById("shipmentNumberInnerHtml").innerHTML = " sohdfjlkl";
+  // document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " sohdfjlkl";
 }

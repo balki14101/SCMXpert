@@ -54,7 +54,6 @@ body,html{
     position: relative;
     height: 3em;
     margin-bottom: 12px;
-    /* margin-top: 12px; */
     width: 40%;
 
 }
@@ -100,7 +99,6 @@ body,html{
     color: #80868b;
     font-size: 1em;
     transition: .4s;
-    /* background-color: #000; */
 }
 
 .form_button{
@@ -169,7 +167,6 @@ body,html{
 
 
 .row{
-    /* background-color: brown;  */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -178,11 +175,8 @@ body,html{
 }
 
 .innerHtml{
-    /* margin-bottom: 16px; */
     color: red;
     padding-left: 8px;
-
     margin-top: 50px;
-    /* background-color:red; */
 }
 

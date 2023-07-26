@@ -1,125 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>DataStream</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
 
-  <title>Home</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon" />
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+    />
 
-  <!-- Favicons -->
-  <link href="../assets/img/favicon.png" rel="icon">
-  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link
+      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
-  <!-- Vendor CSS Files -->
-  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="../css/main.css" rel="stylesheet" />
+    <link href="../css/shipment.css" rel="stylesheet" />
+  </head>
 
+  <body class="home-page" onload="datastream()">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div
+        class="container-fluid d-flex align-items-center justify-content-between"
+      >
+        <a
+          href="home.html"
+          class="logo d-flex align-items-center me-auto me-xl-0"
+        >
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <h1>SCXMEXPERTLite</h1>
+          <span>.</span>
+        </a>
 
-  <!-- Template Main CSS File -->
-  <link href="../assets/css/maindummy.css" rel="stylesheet">
-  <link href="../css/shipment.css" rel="stylesheet">
+        <!-- Nav Menu -->
+        <nav id="navmenu" class="navmenu">          
+          <ul>
+            <li><a href="home.html#" >Home</a></li>
+            <li><a href="./data.html" class="active">Datastream</a></li>
+            <li><a href="./createShipment.html">Create Shipment</a></li>
+            <li><a href="./shipments.html">Shipments</a></li>
+            <li><a href="./index.html">Logout</a></li>
+          </ul>
 
-  
-</head>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+        <!-- End Nav Menu -->
+      </div>
+    </header>
+    <!-- End Header -->
 
-<body class="home-page" onload="datastream()">
-
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-
-      <a href="home.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>SCXMEXPERTLite</h1>
-        <span>.</span>
-      </a>
-
-      <!-- <h1 class="form_title">Create Shipment</h1> -->
-
-      <!-- Nav Menu -->
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="./home.html" >Home</a></li>
-          <li><a href="./data.html" class="active">datastream</a></li>
-          <li><a href="./createShipment.html" >Shipment</a></li>
-          <!-- <li><a href="blog.html">Blog</a></li> -->
-          <li><a href="./index.html">Logout</a></li>
-
-        
-        </ul>
-
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav><!-- End Nav Menu -->
-
-      <!-- <a class="btn-getstarted" href="home.html#about">Get Started</a> -->
-
-    </div>
-  </header><!-- End Header -->
-
-  <main>
-
-    
-
-    <!-- Section - Home Page --> 
-    <section class="bg">
-        <!-- <h1 class="form_title">Create Shipment</h1> -->
+    <main>
+      <!-- Section - Home Page -->
+      <section class="bg">
         <h1 class="form_title">Data Stream</h1>
 
-
-      <!-- <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in"> -->
-
-      <div style="padding-left: 80px;padding-right: 80px;">
-      
-  
-        <table style=" text-align: center;background-color: aliceblue;margin: 16px;" id="myTable">
+        <div style="padding-left: 80px; padding-right: 80px">
+          <table
+            style="
+              text-align: center;
+              background-color: aliceblue;
+              margin: 16px;
+            "
+            id="myTable"
+          >
             <tr>
-                <th style="text-align: center; font-size: large; padding: 4px; width: 10%;">
-                    Device ID
-                  </th>
-              <th style="text-align: center; font-size: large; padding: 4px; width: 10%;">
+              <th
+                style="
+                  text-align: center;
+                  font-size: large;
+                  padding: 4px;
+                  width: 10%;
+                "
+              >
+                Device ID
+              </th>
+              <th
+                style="
+                  text-align: center;
+                  font-size: large;
+                  padding: 4px;
+                  width: 10%;
+                "
+              >
                 Battery level
               </th>
-              <th style="text-align: center; font-size: large; padding: 4px; width: 25%;">
+              <th
+                style="
+                  text-align: center;
+                  font-size: large;
+                  padding: 4px;
+                  width: 25%;
+                "
+              >
                 Sensor temperature
               </th>
-              <th style="text-align: center; font-size: large; padding: 4px ; width: 25%;">
+              <th
+                style="
+                  text-align: center;
+                  font-size: large;
+                  padding: 4px;
+                  width: 25%;
+                "
+              >
                 Route From
               </th>
-              <th style="text-align: center; font-size: large; padding: 4px; width: 30%;">
+              <th
+                style="
+                  text-align: center;
+                  font-size: large;
+                  padding: 4px;
+                  width: 30%;
+                "
+              >
                 Route To
               </th>
             </tr>
-            <tbody id="result" style="background-color: white;"></tbody>
+            <tbody id="result" style="background-color: white"></tbody>
           </table>
-        
-      </div>
+        </div>
+      </section>
+    </main>
 
-    </section>
-       
-  </main>
+    <!-- Scroll Top Button -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
 
-
-  <!-- Scroll Top Button -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-
-  <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
-  <script src="../js/datastream.js"></script>
-
-
-</body>
-
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../js/datastream.js"></script>
+  </body>
 </html>

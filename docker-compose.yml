@@ -50,10 +50,10 @@ services:
     depends_on:
       - zookeeper
         
-  # server:
-  #   image: docker-server:v1
-  #   ports:
-  #     - 5050:5050
+  server:
+    image: docker-server:v1
+    ports:
+      - 5050:5050
 
   # producer:
   #   image: docker-producer:v1
