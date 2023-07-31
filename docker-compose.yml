@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   frontend:
-    image: docker-frontend:v2
+    image: docker-frontend:v1
     depends_on:
       - backend
     ports:
@@ -22,9 +22,6 @@ services:
       - 2181:2181
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
-    # environment:
-    #   ZOOKEEPER_CLIENT_PORT: 2181
-    #   ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
     image: docker.io/bitnami/kafka:3.2
@@ -39,14 +36,6 @@ services:
       timeout: 30s
       retries: 3
       start_period: 30s
-    # environment:
-    #   KAFKA_BROKER_ID: 1
-    #   KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-    #   KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-    #   KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
-    #   KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    #   KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-    #   KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
         
@@ -55,17 +44,17 @@ services:
     ports:
       - 5050:5050
 
-  # producer:
-  #   image: docker-producer:v1
-  #   depends_on:
-  #     kafka:
-  #       condition: service_healthy
+  producer:
+    image: docker-producer:v1
+    depends_on:
+      kafka:
+        condition: service_healthy
 
-  # consumer:
-  #   image: docker-consumer:v1
-  #   depends_on:
-  #     kafka:
-  #       condition: service_healthy
+  consumer:
+    image: docker-consumer:v1
+    depends_on:
+      kafka:
+        condition: service_healthy
     
 
 

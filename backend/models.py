@@ -1,5 +1,5 @@
-from typing import Union,Optional
-from pydantic import BaseModel
+from typing import Union,Optional,List
+from pydantic import BaseModel,EmailStr
 
 
 class Item(BaseModel):
@@ -42,10 +42,8 @@ class ship(BaseModel):
     Serial_Number: str    
     Shipment_Description: str
     Created_by:str
-    User_Id:str
-    
-# def shipmentEntity(ship) -> dict:
-#     return{
-#         "shipmentNumber":str(ship['Shipment_Number']),
-#         "ContainerNumber":str(ship['Container_Number'])
-#     }    
+    User_Id:str  
+    Username:str  
+
+class EmailSchema(BaseModel):
+   email: List[EmailStr]    

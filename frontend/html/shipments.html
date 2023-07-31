@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head>    
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Shipments</title>
+
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+
     <!-- Favicons -->
     <link href="../assets/img/favicon.png" rel="icon" />
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
@@ -46,48 +53,62 @@
         --color-nav: #444444;
         --color-nav-hover: #d83535;
       }
+
+      .bggg {
+    /* The image used */
+    background-image: url("../assets/img/background.jpg");
+  
+    /* Full height */
+    height: 100%; 
+    /* overflow-y: auto; */
+
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
     </style>
   </head>
 
   <body class="home-page" onload="onloadFunction()">
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
-      <div
-        class="container-fluid d-flex align-items-center justify-content-between"
+   <!-- ======= Header ======= -->
+   <header id="header" class="header fixed-top d-flex align-items-center">
+    <div
+      class="container-fluid d-flex align-items-center justify-content-between"
+    >
+      <a
+        href="home.html"
+        class="logo d-flex align-items-center me-auto me-xl-0"
       >
-        <a
-          href="home.html"
-          class="logo d-flex align-items-center me-auto me-xl-0"
-        >
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1>SCXMEXPERTLite</h1>
-          <span>.</span>
-        </a>
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>SCXMEXPERTLite</h1>
+        <span>.</span>
+      </a>
 
-        <!-- Nav Menu -->
-        <nav id="navmenu" class="navmenu">
-          <!-- <ul>
-            <li><a href="home.html#">Home</a></li>
-            <li id="shipmentsButton"><a href="./data.html">Datastream</a></li>
-            <li><a href="./createShipment.html">Create Shipment</a></li>
-            <li><a href="./shipments.html" class="active">Shipments</a></li>
-            <li><a href="./index.html">Logout</a></li>
-          </ul> -->
-          <ul>
-            <li><a href="home.html#">Home</a></li>
-            <li id="datastreamButton"><a href="./data.html">Datastream</a></li>
-            <li><a href="./createShipment.html">Create Shipment</a></li>
-            <li ><a href="./shipments.html" class="active">Shipments</a></li>
-            <li><a href="./index.html">Logout</a></li>
-          </ul>
+      <!-- <h1 class="form_title">Create Shipment</h1> -->
 
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-        <!-- End Nav Menu -->
+      <!-- Nav Menu -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="home.html#">Home</a></li>
+          <li id="datastreamButton"><a href="./data.html">Datastream</a></li>
+          <li><a href="./createShipment.html">Create Shipment</a></li>
+          <!-- <li id="shipmentsButton"><a href="./shipments.html">Shipments</a></li> -->
+          <li><a href="./shipments.html" class="active">Shipments</a></li>
+          <li><a href="./index.html">Logout</a></li>
+        </ul>
+
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <!-- End Nav Menu -->
+    </div>
+  </header>
+  <!-- End Header -->
       </div>
     </header>
-
+    <!-- End Header -->
     <!-- <main id="main">
         <section id="hero" class="hero">
           <img src="../assets/img/background.jpg" alt="" data-aos="fade-in" />
@@ -98,25 +119,22 @@
 
     <main style="background-color: black;">
     <!-- Section - Home Page -->
-    <section style=" height: 100%" class="bg">
+    <section class="bg">
       <!-- <section id="hero" class="hero">
          -->
       <!-- <img src="../assets/img/background.jpg" alt="" data-aos="fade-in" /> -->
-      <div style="margin-top: 80px;"></div>
-      <h1 class="form_title">Data Stream</h1>
-      <!-- <h1 style="margin-top: 100px;">Data Stream</h1> -->
+      <div style="margin-top: 40px;"></div>
+      <h1 class="form_title">Shipment Details</h1>
 
       <div style="padding-left: 80px; padding-right: 80px">
-        <table
-          style="text-align: center; background-color: aliceblue; margin: 16px"
-          id="myTable"
-        >
+      <table id="example" style="text-align: center; background-color: aliceblue; margin: 16px" class="table table-striped">
+        <thead >
           <tr>
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -125,8 +143,8 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -135,8 +153,8 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -145,8 +163,8 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -155,18 +173,18 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
               Delivery No.
             </th>
             <th
-              style="
+              style="              
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -175,8 +193,8 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -185,8 +203,8 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 10%;
               "
             >
@@ -195,8 +213,8 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
+                font-size: medium;
+                  
                 width: 30%;
               "
             >
@@ -205,18 +223,23 @@
             <th
               style="
                 text-align: center;
-                font-size: large;
-                padding: 4px;
-                width: 10%;
+                font-size: medium;
+                
+                width: 50%;
               "
             >
               Created_by
             </th>
           </tr>
-          <tbody id="result" style="background-color: white"></tbody>
-        </table>
-      </div>
-    </div>
+        </thead>
+        <tbody id="result"></tbody>
+        
+    </table>
+  </div>
+
+      
+      
+    <!-- </div> -->
     </main>
 
     <!-- Scroll Top Button -->

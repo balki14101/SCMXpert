@@ -40,7 +40,8 @@ function createShipment() {
       Serial_Number: serialNumberValue,
       Shipment_Description: shipmentDescriptionValue,
       Created_by:localStorage.getItem("role"),
-      User_Id:localStorage.getItem("userId")
+      User_Id:localStorage.getItem("userId"),
+      Username:localStorage.getItem("username")
     }),
   })
     // .then((response) => response.json())
@@ -104,7 +105,7 @@ function createShipment() {
         document.getElementById("shipmentDescriptionInnerHtml").innerHTML =error.message;               
        
 
-      alert("catch error while creating shipment");
+      alert("invalid details");
     });
 }
 
