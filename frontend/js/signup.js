@@ -31,7 +31,7 @@ function signup() {
           role:"User"
         }),
       })
-        // .then((response) => response.json())
+        //checking validations
         .then(response => {
           if(response.ok){
             console.log("success signup",response)
@@ -42,6 +42,8 @@ function signup() {
           return response.json()
           .then(response => {throw new Error(response.detail)})
         })
+
+        // with success response
         .then((responseJson) => {
           console.log({ responseJson });
           if (responseJson == "user is created successfully") {
@@ -51,9 +53,11 @@ function signup() {
           }
           alert(responseJson);
         })
+        
         .catch((error) => {
-          // console.log(error);
           console.log("error",error.message);
+
+          //field validations
           if (error.message == "The Username field is required" || error.message == "The Username must be letters only") {
             document.getElementById("usernameInnerHtml").innerHTML =error.message;
           }
@@ -66,10 +70,4 @@ function signup() {
 
           alert(error.message);
         });
-      //   window.location.href = "/frontend/html/index.html";
-    // } 
-    // else {
-    //   document.getElementById("reenterPasswordInnerHtml").innerHTML =
-    //     "please enter the same password";
-    // }
 }

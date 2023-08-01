@@ -3,7 +3,6 @@
   let captchaValue = "";
   var validRegex =
     "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-  // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   function gencaptcha() {
     let value = btoa(Math.random() * 100000);
@@ -48,23 +47,8 @@
     let enteredEmail = document.getElementById("email").value;
     let enteredPassword = document.getElementById("pwd").value;
 
-    //validating email & password
-    // if (enteredEmail == "") {
-    //   document.getElementById("emailInnerHtml").innerHTML =
-    //     "please enter the email";
-    // }
-
-    // if (enteredPassword == "") {
-    //   document.getElementById("passwordInnerHtml").innerHTML =
-    //     "please enter the password";
-    // } else document.getElementById("passwordInnerHtml").innerHTML = "";
-
-    // if (enteredEmail.match(validRegex)) {
-    //   document.getElementById("emailInnerHtml").innerHTML = "";
-
-      if (validCaptcha) {
+    if (validCaptcha) {
         fetch("http://127.0.0.1:8000/loginUser", {
-        // fetch("http://localhost:8080/loginUser", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -75,6 +59,7 @@
             password: enteredPassword,
           }),
         })
+        //checking validations
           .then(response => {
             if(response.ok){
               console.log("success",response)
@@ -85,6 +70,7 @@
             return response.json()
             .then(response => {throw new Error(response.detail)})
           })
+          //With the response
           .then((responseJson) => {
             console.log({ responseJson });
             console.log("status",responseJson.userId?.$oid);
@@ -100,16 +86,20 @@
               localStorage.setItem("token", responseJson.token);
               localStorage.setItem("role", responseJson.role);
               localStorage.setItem("userId", responseJson.userId?.$oid);
+              localStorage.setItem("username", responseJson.username);
+
             } 
             else{
               document.getElementById("emailInnerHtml").innerHTML =""
             document.getElementById("passwordInnerHtml").innerHTML ="";
             document.getElementById("invalidCredentials").innerHTML ="invalid credentials";
+            alert("invalid credentials")
             }
             
           })
           .catch((error) => {
             console.log("error",error.message);
+            //field validations
             if (error.message == "The email field is required" || error.message == "The email address is not valid") {
               document.getElementById("emailInnerHtml").innerHTML =error.message;
             }
@@ -118,11 +108,9 @@
 
           });
       }
-    // } else
-    //   document.getElementById("emailInnerHtml").innerHTML =
-    //     "please enter the valid email";
   }
 
+  //captcha validation
   document
     .querySelector(".login_form .form_button")
     .addEventListener("click", function () {
@@ -131,11 +119,8 @@
       ).value;
 
       if (inputcaptchavalue === captchaValue) {
-        // swal("","Log in","success");
-        // alert("");
         loginCheck(true);
       } else {
-        // swal("Invalid Captcha");
         alert("Invalid Captcha");
         loginCheck(false);
       }

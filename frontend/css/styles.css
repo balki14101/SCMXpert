@@ -14,7 +14,9 @@ body,html{
 
 .bg {
     /* The image used */
-    background-image: url("../assets/img/background.jpg");
+    /* background-image: url("../assets/img/background.jpg"); */
+    background-image: url("https://uploads-ssl.webflow.com/5e57ba59552cf400c593fd16/5e7f7f2c14a69cacb057eb74_2Rin9.jpeg");
+
 
     /* Full height */
     height: 100%; 

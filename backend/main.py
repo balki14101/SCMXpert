@@ -1,7 +1,7 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI,HTTPException,status,Request
 from validations import loginValid,registerValid,resetPasswordValidate,createShipment
-from mongo import mongodb
+from mongo import mongodb,users_Collection,datastream_Collection,shipments_Collection
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
@@ -37,6 +37,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 def get_users():
     data = list(mongodb['users'].find())
     print("sdf",data)
+    
     returnlist = []
     for item in data:
         returnlist.append({"id":str(item["_id"]),
@@ -52,14 +53,14 @@ def get_users():
 def create_user(user:User):
     print("creating a user",user)
     registerValid(user)
-    role = 'User'
+
     try:
         if (user.name != '') and (user.email != '') and (user.password != ''):
-            findEmail = mongodb['users'].find_one({'email':user.email})
+            findEmail = users_Collection.find_one({'email':user.email})
             if findEmail == None:
                 hashed_password = pwd_context.hash(user.password)
 
-                mongodb['users'].insert_one({'name':user.name,'email':user.email,'password':hashed_password,'role':user.role})
+                users_Collection.insert_one({'name':user.name,'email':user.email,'password':hashed_password,'role':user.role})
                 return "user is created successfully"
             else:
                 return "user already exist"
@@ -76,10 +77,10 @@ def create_user(user:User):
 @app.post("/loginUser")
 async def login_user(login_user:Login):
     print("entered credentials",login_user)
-
+    
     loginValid(login_user)
     try:
-        data = mongodb['users'].find_one({'email':login_user.email})
+        data = users_Collection.find_one({'email':login_user.email})
         data=json.loads(json_util.dumps(data))
        
         # if check:
@@ -91,7 +92,7 @@ async def login_user(login_user:Login):
                 token = await get_token(data)
                 print(token)
                 print(type(data['_id']))
-                return {"message":"user already exists","token":token,"role":data['role'],"userId":data['_id']}
+                return {"message":"user already exists","token":token,"role":data['role'],"userId":data['_id'],"username":data['name']}
             else:
                 return  "user already exists, please enter the correct password"
         else:
@@ -112,7 +113,7 @@ async def forgot_password(new_credentials:ResetPassword):
     try:    
         print("forgot password credentials",new_credentials)
 
-        data = mongodb['users'].find_one({'email':new_credentials.email})
+        data = users_Collection.find_one({'email':new_credentials.email})
         print(data)
 
         if data != None:
@@ -122,7 +123,7 @@ async def forgot_password(new_credentials:ResetPassword):
                 return "entered password is same as old one, please enter the new password"
             else:           
                 hashed_password = pwd_context.hash(new_credentials.password)
-                mongodb['users'].find_one_and_update({'email':new_credentials.email},{"$set":{'password':hashed_password}})
+                users_Collection.find_one_and_update({'email':new_credentials.email},{"$set":{'password':hashed_password}})
                 return  "password updated successfully"
         else:
             return "need to signup, no user found"
@@ -136,9 +137,9 @@ async def forgot_password(new_credentials:ResetPassword):
 @app.get("/datastream")
 async def getDataStream(tokensss:str=Depends(verify_token)):
     print("tokennn",tokensss)
-
+    
     try:
-        data = list(mongodb['stream'].find())
+        data = list(datastream_Collection.find())
         print("sdf",data)
         returnlist = []
         for item in data:
@@ -167,7 +168,7 @@ def create_user(data:ship,token:str=Depends(verify_token)):
     createShipment(data)
 
     try:
-        mongodb['shipment_created'].insert_one({
+        shipments_Collection.insert_one({
             'Shipment_Number':data.Shipment_Number,
             'Container_Number':data.Container_Number,
             'Delivery_Date': data.Delivery_Date,
@@ -194,7 +195,7 @@ async def getDataStream(tokensss:str=Depends(verify_token)):
     print("tokennn",tokensss)
 
     try:
-        data = list(mongodb['shipment_created'].find())
+        data = list(shipments_Collection.find())
         print("shipments",data)
         returnlist = []
         for item in data:

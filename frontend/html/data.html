@@ -8,6 +8,10 @@
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <!-- Favicons -->
     <link href="../assets/img/favicon.png" rel="icon" />
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
@@ -76,74 +80,71 @@
     </header>
     <!-- End Header -->
 
-    <main>
+    <main style="background-color: aliceblue;">
       <!-- Section - Home Page -->
       <section class="bg">
         <h1 class="form_title">Data Stream</h1>
 
-        <div style="padding-left: 80px; padding-right: 80px">
-          <table
-            style="
-              text-align: center;
-              background-color: aliceblue;
-              margin: 16px;
-            "
-            id="myTable"
-          >
-            <tr>
-              <th
-                style="
-                  text-align: center;
-                  font-size: large;
-                  padding: 4px;
-                  width: 10%;
-                "
-              >
-                Device ID
-              </th>
-              <th
-                style="
-                  text-align: center;
-                  font-size: large;
-                  padding: 4px;
-                  width: 10%;
-                "
-              >
-                Battery level
-              </th>
-              <th
-                style="
-                  text-align: center;
-                  font-size: large;
-                  padding: 4px;
-                  width: 25%;
-                "
-              >
-                Sensor temperature
-              </th>
-              <th
-                style="
-                  text-align: center;
-                  font-size: large;
-                  padding: 4px;
-                  width: 25%;
-                "
-              >
-                Route From
-              </th>
-              <th
-                style="
-                  text-align: center;
-                  font-size: large;
-                  padding: 4px;
-                  width: 30%;
-                "
-              >
-                Route To
-              </th>
-            </tr>
-            <tbody id="result" style="background-color: white"></tbody>
-          </table>
+        <div style="display: flex;flex-direction: column;padding-right: 100px;padding-left: 100px;">
+         
+          <table id="example" style="text-align: center; background-color: aliceblue; margin: 16px" class="table table-striped">
+            <thead >
+              <tr>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: large;
+                    padding: 4px;
+                    width: 10%;
+                  "
+                >
+                  Device ID
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: large;
+                    padding: 4px;
+                    width: 15%;
+                  "
+                >
+                  Battery level
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: large;
+                    padding: 4px;
+                    width: 20%;
+                  "
+                >
+                  Sensor temperature
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: large;
+                    padding: 4px;
+                    width: 25%;
+                  "
+                >
+                  Route From
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: large;
+                    padding: 4px;
+                    width: 30%;
+                  "
+                >
+                  Route To
+                </th>
+              </tr>
+            </thead>
+            <tbody id="result"></tbody>
+            
+        </table>
         </div>
       </section>
     </main>
