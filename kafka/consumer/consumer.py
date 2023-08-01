@@ -5,11 +5,16 @@ from kafka import KafkaConsumer
 from pydantic import BaseModel
 
 from database import collection
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=".env")
 
 # bootstrap_servers = "localhost:9092"
 # bootstrap_servers = "root-kafka-1:9092"
-bootstrap_servers = 'scmxpert-kafka-1:9092'
-topicName = 'Device_Data_Stream'
+bootstrap_servers = os.getenv("bootstrap_servers")
+topicName = os.getenv("topic_name")
 
 class Device_Data(BaseModel):
     Battery_Level: int

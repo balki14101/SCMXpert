@@ -1,15 +1,17 @@
 function roleCheck(){
-    role = localStorage.getItem("role")
+   role = localStorage.getItem("role")
+   username = localStorage.getItem("username")
 
-    console.log("role from home.js", role)    
-    let element = document.getElementById("button");
-    let hidden = element.getAttribute("hidden");
+   let datastreamElement = document.getElementById("datastreamButton");
 
-    
-        if (role == "Admin") {
-           element.removeAttribute("hidden");
-        } else if (role == "User") {
-           element.setAttribute("hidden", "hidden");
-        }
+   document.getElementById("loggedInUser").innerHTML= username
+   
+   console.log("role from home.js", role)    
+   
+       if (role == "Admin") {
+        datastreamElement.removeAttribute("hidden");
+       } else if (role == "User") {
+        datastreamElement.setAttribute("hidden", "hidden");
+       }
 
 }

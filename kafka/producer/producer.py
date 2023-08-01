@@ -1,22 +1,29 @@
 import socket
 import json
 from kafka import KafkaProducer
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=".env")
 
 
 socket_connection=socket.socket()
 
 # HOST = socket.gethostbyname(socket.gethostname())
 # HOST = "root-server-1"
-HOST= "scmxpert-server-1"
-PORT = 5050
+# HOST= "scmxpert-server-1"
+# PORT = 5050
+HOST= os.getenv("host_name")
+PORT = int(os.getenv("port"))
 
 
 socket_connection.connect((HOST,PORT))
 
 # bootstrap_servers = 'localhost:9092'
 # bootstrap_servers = 'root-kafka-1:9092'
-bootstrap_servers = 'scmxpert-kafka-1:9092'
-topicName = 'Device_Data_Stream'
+bootstrap_servers = os.getenv("bootstrap_servers")
+topicName = os.getenv("topic_name")
 producer = KafkaProducer(bootstrap_servers= bootstrap_servers,
                          retries = 5,
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))

@@ -87,7 +87,6 @@
                 Create a delightful online journey by optimising your shipping
                 process and everything surrounding it.
               </p>
-              <button>click me</button>
             </div>
           </div>
         </div>
@@ -104,36 +103,6 @@
 
     <!-- Template Main JS File -->
     <script src="./assets/js/main.js"></script>
-    <script src="../js/roleCheck.js"></script>
-    <script>
-      username = localStorage.getItem("username");
-      document.getElementById("loggedInUser").innerHTML = username;
-      function sentmail(){
-        
-  fetch("http://127.0.0.1:8000/send_mail", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        email: "balki14101@gmail.com",
-      }),
-    })
-    .then(response => {      
-      return response.json()
-    })
-      .then((responseJson) => {
-        console.log({ responseJson });
-        
-        // alert(responseJson);
-      })
-      .catch((error) => {
-        console.log("error",error.message);
-
-        alert("error catch");
-      });
-      }
-    </script>
+    <script src="../js/home.js"></script>
   </body>
 </html>
