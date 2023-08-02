@@ -47,6 +47,8 @@ body,html{
     font-weight: 300;
     margin-bottom: 24px;
     text-align: center;
+    font-family: 'Poppins';
+    font-size: 32px;
 }
 
 .form_div{

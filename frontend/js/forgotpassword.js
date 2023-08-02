@@ -49,7 +49,7 @@ function forgotPassword() {
         // else if(responseJson == "entered password is same as old one, please enter the new password"){
         //   document.getElementById("resetReenterPagePasswordInnerHtml").innerHTML ="Password is same as old one";
         // }
-        // alert(responseJson);
+        alert(responseJson);
       })
       .catch((error) => {
         console.log("error",error.message);

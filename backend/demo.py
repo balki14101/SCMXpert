@@ -6,22 +6,15 @@ from email.mime.multipart import MIMEMultipart
 path = "http://localhost:5500/frontend/html/forgotPassword.html"
 
 
-def generate_auth_email(email:str):
+def generate_auth_email(email:str,key:int):
 
     print("inside generate auth email")
 
-    subject = "Verification Code"
 
-    body = """\
-    <html>
-    <head></head>
-        <body>
-            <p>Hi!<br>
-            click <a href="http://localhost:5500/frontend/html/resetPassword.html">here</a> to reset your password.
-            </p>
-        </body>
-    </html>
-    """ 
+
+    subject = "Verification Code" + "lksndf"
+
+    body = "<html> <head></head><body><p>Hi!<br>click <a href='http://localhost:5500/frontend/html/resetPassword.html?key="+str(key)+"'>here</a> to reset your password.</p></body></html>"
 
 
     #sender_email = config.EMAIL_ID

@@ -7,10 +7,11 @@ from fastapi import Depends
 from bson import json_util
 import json
 import random
+import string
 
-from validations import loginValid,registerValid,resetPasswordValidate,createShipment
+from validations import loginValid,registerValid,resetPasswordValidate,createShipment,forgotPasswordValidate
 from mongo import mongodb,users_Collection,datastream_Collection,shipments_Collection
-from models import User,Login,ship,ResetPassword
+from models import User,Login,ship,ResetPassword,forgotPassword
 from jwt import get_token,verify_token
 from demo import generate_auth_email
 
@@ -36,6 +37,25 @@ def get_users():
     print(returnlist)
     # print(dbname)
     return returnlist
+
+#get users
+@appRoute.get("/getUser/{key}")
+def get_users(key: str):
+    
+    # intKey=int(key)
+    # print(type(key))
+    data = mongodb['users'].find_one({'key': key})
+    print("sdf",data)
+    
+    returnlist = {}
+
+    return {"id":str(data["_id"]),
+            "name":str(data["name"]),
+               "email": str(data["email"]),
+               "password": str(data["password"]),
+               "role": str(data["role"]),
+               "key": str(data["key"])
+               }
 
 #create user
 @appRoute.post("/createUser")
@@ -94,23 +114,27 @@ async def login_user(login_user:Login):
 
 #forgot password
 @appRoute.post("/forgotPassword")
-async def forgot_password(new_credentials:ResetPassword):
-    print(new_credentials)
+async def forgot_password(forgot_password_email:forgotPassword):
+    print(forgot_password_email)
 
-    resetPasswordValidate(new_credentials)
+    forgotPasswordValidate(forgot_password_email)
 
     try:    
-        print("forgot password credentials",new_credentials)
+        print("forgot password credentials",forgot_password_email)
 
-        data = users_Collection.find_one({'email':new_credentials.email})
+        data = users_Collection.find_one({'email':forgot_password_email.email})
         print(data)
 
         if data != None:
             key = random.randint(1000000000,9999999999)
+            # printing letters
+            letters = string.ascii_letters
+            key = ''.join(random.choice(letters) for i in range(10))
+            print ( ''.join(random.choice(letters) for i in range(10)) )     
 
-            users_Collection.find_one_and_update({ "email" : new_credentials.email },{"$set": { "key" : key }})
+            users_Collection.find_one_and_update({ "email" : forgot_password_email.email },{"$set": { "key" : key }})
 
-            generate_auth_email(new_credentials.email)
+            generate_auth_email(forgot_password_email.email,key)
 
             return "reset mail sent successfully"
 

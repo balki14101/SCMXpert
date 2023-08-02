@@ -1,4 +1,4 @@
-from models import Login,User,ship,ResetPassword
+from models import Login,User,ship,ResetPassword,forgotPassword
 from fastapi import FastAPI,HTTPException,status,Request
 import re
 
@@ -89,7 +89,7 @@ def registerValid(user:User):
             detail= "Password Mismatching"
         )                
 
-def resetPasswordValidate(new_credentials:ResetPassword):
+def forgotPasswordValidate(new_credentials:forgotPassword):
 
     EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
     EMAIL_NUMBER_CHECK = re.compile(r'^[a-zA-Z]+(?:_[a-zA-Z]+)?$')
@@ -129,6 +129,48 @@ def resetPasswordValidate(new_credentials:ResetPassword):
     #         status_code=400,
     #         detail= "Password Mismatching"
     #     )                
+
+def resetPasswordValidate(new_credentials:ResetPassword):
+
+    EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+    EMAIL_NUMBER_CHECK = re.compile(r'^[a-zA-Z]+(?:_[a-zA-Z]+)?$')
+
+    PWD_REGEX = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$')
+
+
+
+    # if len(new_credentials.email) < 1:
+    #     raise HTTPException(
+    #         status_code=400,
+    #         detail= "The email field is required"
+    #     )
+    
+    
+    # elif not EMAIL_REGEX.match(new_credentials.email):
+    #     raise HTTPException(
+    #         status_code=400,
+    #         detail= "The email address is not valid"
+    #     )
+    
+
+    if len(new_credentials.password) < 1:
+        raise HTTPException(
+            status_code=400,
+            detail= "The password field is required"
+        )
+
+    elif not PWD_REGEX.match(new_credentials.password):   
+        raise HTTPException(
+            status_code=400,
+            detail= "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter,and 1 special character and must be 6-16 characters"
+        )
+                
+    elif (len(new_credentials.reenteredpassword) < 1 or new_credentials.password != new_credentials.reenteredpassword):
+        raise HTTPException(
+            status_code=400,
+            detail= "Password Mismatching"
+        )                
+
 
 def createShipment(shipment:ship):
     number_pattern = "^\\d+$"

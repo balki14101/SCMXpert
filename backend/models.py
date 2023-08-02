@@ -19,10 +19,15 @@ class Login(BaseModel):
     email: str
     password: str
 
-class ResetPassword(BaseModel):
+class forgotPassword(BaseModel):
     email: str
     # password: str
     # reenteredpassword:str
+
+class ResetPassword(BaseModel):
+    email: str
+    password: str
+    reenteredpassword:str    
 
 
 class Device_Data(BaseModel):
