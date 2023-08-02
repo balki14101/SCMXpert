@@ -112,23 +112,23 @@ def resetPasswordValidate(new_credentials:ResetPassword):
         )
     
 
-    elif len(new_credentials.password) < 1:
-        raise HTTPException(
-            status_code=400,
-            detail= "The password field is required"
-        )
+    # elif len(new_credentials.password) < 1:
+    #     raise HTTPException(
+    #         status_code=400,
+    #         detail= "The password field is required"
+    #     )
 
-    elif not PWD_REGEX.match(new_credentials.password):   
-        raise HTTPException(
-            status_code=400,
-            detail= "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter,and 1 special character and must be 6-16 characters"
-        )
+    # elif not PWD_REGEX.match(new_credentials.password):   
+    #     raise HTTPException(
+    #         status_code=400,
+    #         detail= "The password must contain at least 1 digit, 1 uppercase letter, and 1 lowercase letter,and 1 special character and must be 6-16 characters"
+    #     )
                 
-    elif (len(new_credentials.reenteredpassword) < 1 or new_credentials.password != new_credentials.reenteredpassword):
-        raise HTTPException(
-            status_code=400,
-            detail= "Password Mismatching"
-        )                
+    # elif (len(new_credentials.reenteredpassword) < 1 or new_credentials.password != new_credentials.reenteredpassword):
+    #     raise HTTPException(
+    #         status_code=400,
+    #         detail= "Password Mismatching"
+    #     )                
 
 def createShipment(shipment:ship):
     number_pattern = "^\\d+$"

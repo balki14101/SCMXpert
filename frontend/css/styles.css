@@ -101,6 +101,21 @@ body,html{
     margin-top: 5em;
     margin-bottom: 0.7em;
 }
+.forgot_pasword{
+    width: 100%;
+    display: block;
+    padding: 1em 2em;
+    outline: none;
+    border: none;
+    background-color: rgb(28,164,248);
+    color: #fff;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .4s;
+    margin-top: 24px;
+    margin-bottom: 0.7em;
+}
 
 .signup_button{
     width: 100%;

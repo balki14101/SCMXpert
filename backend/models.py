@@ -13,6 +13,7 @@ class User(BaseModel):
     password: str
     reenterpassword:str
     role:str
+    key:str | None
 
 class Login(BaseModel):
     email: str
@@ -20,8 +21,8 @@ class Login(BaseModel):
 
 class ResetPassword(BaseModel):
     email: str
-    password: str
-    reenteredpassword:str
+    # password: str
+    # reenteredpassword:str
 
 
 class Device_Data(BaseModel):

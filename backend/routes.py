@@ -6,11 +6,13 @@ from passlib.context import CryptContext
 from fastapi import Depends
 from bson import json_util
 import json
+import random
 
 from validations import loginValid,registerValid,resetPasswordValidate,createShipment
 from mongo import mongodb,users_Collection,datastream_Collection,shipments_Collection
 from models import User,Login,ship,ResetPassword
 from jwt import get_token,verify_token
+from demo import generate_auth_email
 
 appRoute=APIRouter()
 
@@ -90,8 +92,45 @@ async def login_user(login_user:Login):
             detail="Bad Request",
         ) 
 
-#create user
+#forgot password
 @appRoute.post("/forgotPassword")
+async def forgot_password(new_credentials:ResetPassword):
+    print(new_credentials)
+
+    resetPasswordValidate(new_credentials)
+
+    try:    
+        print("forgot password credentials",new_credentials)
+
+        data = users_Collection.find_one({'email':new_credentials.email})
+        print(data)
+
+        if data != None:
+            key = random.randint(1000000000,9999999999)
+
+            users_Collection.find_one_and_update({ "email" : new_credentials.email },{"$set": { "key" : key }})
+
+            generate_auth_email(new_credentials.email)
+
+            return "reset mail sent successfully"
+
+            # passwordCheck = pwd_context.verify(new_credentials.password, data['password'])
+            # if passwordCheck:
+            #     return "entered password is same as old one, please enter the new password"
+            # else:           
+            #     hashed_password = pwd_context.hash(new_credentials.password)
+            #     users_Collection.find_one_and_update({'email':new_credentials.email},{"$set":{'password':hashed_password}})
+            #     return  "password updated successfully"
+        else:
+            return "need to signup, no user found"
+    except JWTError:
+            raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unauthorized Entry",
+        )        
+
+#forgot password
+@appRoute.post("/resetpassword")
 async def forgot_password(new_credentials:ResetPassword):
     print(new_credentials)
 
@@ -118,8 +157,7 @@ async def forgot_password(new_credentials:ResetPassword):
             raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Unauthorized Entry",
-        )        
-
+        )    
 
 @appRoute.get("/datastream")
 async def getDataStream(tokensss:str=Depends(verify_token)):
