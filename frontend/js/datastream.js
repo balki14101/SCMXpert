@@ -1,3 +1,6 @@
+// $(document).ready(function(){
+//   $('#example').dataTable();
+// });
 function datastream() {
   fetch("http://127.0.0.1:8000/datastream", {
     method: "GET",
@@ -6,7 +9,6 @@ function datastream() {
     .then((response) => response.json())
     .then((responseJson) => {
       console.log({ responseJson });
-      
       //token verification conditions
       if (responseJson?.detail == "Token Expired") {
         alert("token expired");
@@ -38,8 +40,9 @@ function datastream() {
           "</td>" 
           +
           "</tr>";
-        document.getElementById("result").innerHTML += row;
+      document.getElementById("result").innerHTML += row;
       }
+      $('#myTable').dataTable();
     })
     .catch((error) => {
       console.log(error);

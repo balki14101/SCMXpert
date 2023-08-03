@@ -70,6 +70,8 @@ function getShipmentDetails() {
           // "</tr>";
           document.getElementById("result").innerHTML += row;
         }
+      $('#myTable').dataTable();
+
       } else if (localStorage.getItem("role") == "User") {
         for (var i = 0; i < responseJson.length; i++) {
           // if(responseJson[i].Created_by=="User"){
@@ -113,6 +115,8 @@ function getShipmentDetails() {
             document.getElementById("result").innerHTML += row;
           }
         }
+      $('#myTable').dataTable();
+
       }
     })
     .catch((error) => {

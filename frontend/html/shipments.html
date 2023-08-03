@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>    
+  <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Shipments</title>
 
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>Shipment</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicons -->
     <link href="../assets/img/favicon.png" rel="icon" />
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
@@ -18,10 +16,6 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Vendor CSS Files -->
     <link
@@ -33,213 +27,197 @@
       rel="stylesheet"
     />
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
     <!-- Template Main CSS File -->
     <link href="../css/main.css" rel="stylesheet" />
     <link href="../css/shipment.css" rel="stylesheet" />
 
-    <style>
-      .home-page .header {
-        --color-background: rgba(255, 255, 255, 0);
-        --color-secondary: #ffffff;
-        --color-nav: rgba(255, 255, 255, 0.515);
-        --color-nav-hover: #ffffff;
-      }
+    <!-- new table  -->
 
-      /* Home Page Custom Header on page scroll
-------------------------------*/
-      .home-page.scrolled .header {
-        --color-background: #ffffff;
-        --color-secondary: #444444;
-        --color-nav: #444444;
-        --color-nav-hover: #d83535;
-      }
-
-      .bggg {
-    /* The image used */
-    background-image: url("../assets/img/background.jpg");
-  
-    /* Full height */
-    height: 100%; 
-    /* overflow-y: auto; */
-
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"
+    ></script>
   </head>
 
   <body class="home-page" onload="onloadFunction()">
-   <!-- ======= Header ======= -->
-   <header id="header" class="header fixed-top d-flex align-items-center">
-    <div
-      class="container-fluid d-flex align-items-center justify-content-between"
-    >
-      <a
-        href="home.html"
-        class="logo d-flex align-items-center me-auto me-xl-0"
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div
+        class="container-fluid d-flex align-items-center justify-content-between"
       >
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>SCXMEXPERTLite</h1>
-        <span>.</span>
-      </a>
+        <a
+          href="home.html"
+          class="logo d-flex align-items-center me-auto me-xl-0"
+        >
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <h1>SCXMEXPERTLite</h1>
+          <span>.</span>
+        </a>
 
-      <!-- <h1 class="form_title">Create Shipment</h1> -->
+        <!-- Nav Menu -->
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="home.html#">Home</a></li>
+            <li id="datastreamButton"><a href="./data.html">Datastream</a></li>
+            <li><a href="./createShipment.html">Create Shipment</a></li>
+            <!-- <li id="shipmentsButton"><a href="./shipments.html">Shipments</a></li> -->
+            <li><a href="./shipments.html" class="active">Shipments</a></li>
+            <li><a href="./index.html">Logout</a></li>
+          </ul>
 
-      <!-- Nav Menu -->
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="home.html#">Home</a></li>
-          <li id="datastreamButton"><a href="./data.html">Datastream</a></li>
-          <li><a href="./createShipment.html">Create Shipment</a></li>
-          <!-- <li id="shipmentsButton"><a href="./shipments.html">Shipments</a></li> -->
-          <li><a href="./shipments.html" class="active">Shipments</a></li>
-          <li><a href="./index.html">Logout</a></li>
-        </ul>
-
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-      <!-- End Nav Menu -->
-    </div>
-  </header>
-  <!-- End Header -->
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+        <!-- End Nav Menu -->
       </div>
     </header>
     <!-- End Header -->
-    <!-- <main id="main">
-        <section id="hero" class="hero">
-          <img src="../assets/img/background.jpg" alt="" data-aos="fade-in" />
-  
-          
-        </section>
-      </main> -->
 
-    <main style="background-color: black;">
-    <!-- Section - Home Page -->
-    <section class="bg">
-      <!-- <section id="hero" class="hero">
-         -->
-      <!-- <img src="../assets/img/background.jpg" alt="" data-aos="fade-in" /> -->
-      <div style="margin-top: 40px;"></div>
-      <h1 class="form_title">Shipment Details</h1>
+    <main style="background-color: black">
+      <!-- Section - Home Page -->
+      <section class="bg">
+        <div style="margin-top: 40px"></div>
+        <h1 class="form_title">Shipment Details</h1>
 
-      <div style="padding-left: 80px; padding-right: 80px">
-      <table id="example" style="text-align: center; background-color: aliceblue; margin: 16px" class="table table-striped">
-        <thead >
-          <tr>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              Shipment No
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              Container No
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              Delivery Date
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              PO No.
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              Delivery No.
-            </th>
-            <th
-              style="              
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              NOC No.
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              Batch Id
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 10%;
-              "
-            >
-              Serial No.
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                  
-                width: 30%;
-              "
-            >
-              Shipment Description
-            </th>
-            <th
-              style="
-                text-align: center;
-                font-size: medium;
-                
-                width: 50%;
-              "
-            >
-              Created_by
-            </th>
-          </tr>
-        </thead>
-        <tbody id="result"></tbody>
-        
-    </table>
-  </div>
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            margin-right: 100px;
+            margin-left: 100px;
+            background-color: skyblue;
+            padding: 16px;
+            border-radius: 8px;
+          "
+        >
+          <table
+            id="myTable"
+            style="
+              text-align: center;
+              background-color: aliceblue;
+              margin-bottom: 32px;
+              margin-top: 48px;
+              border-radius: 8px;
+            "
+            class="table table-striped"
+          >
+            <thead>
+              <tr>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
 
-      
-      
-    <!-- </div> -->
+                    width: 10%;
+                  "
+                >
+                  Shipment No
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  Container No
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  Delivery Date
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  PO No.
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  Delivery No.
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  NOC No.
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  Batch Id
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 10%;
+                  "
+                >
+                  Serial No.
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 30%;
+                  "
+                >
+                  Shipment Description
+                </th>
+                <th
+                  style="
+                    text-align: center;
+                    font-size: medium;
+
+                    width: 50%;
+                  "
+                >
+                  Created_by
+                </th>
+              </tr>
+            </thead>
+            <tbody id="result"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- </div> -->
     </main>
 
     <!-- Scroll Top Button -->
@@ -254,11 +232,10 @@
     <script src="../js/getShipmentDetails.js"></script>
     <script src="../js/roleCheck.js"></script>
     <script>
-        function onloadFunction(){
-            // roleCheck()
-            getShipmentDetails()
-        }
+      function onloadFunction() {
+        // roleCheck()
+        getShipmentDetails();
+      }
     </script>
-    <!-- <script src="../js/datastream.js"></script> -->
   </body>
 </html>
