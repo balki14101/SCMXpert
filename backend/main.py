@@ -5,6 +5,7 @@ from routes import appRoute
 
 origins = [
     "*"
+    # "http://ec2-18-183-186-100.ap-northeast-1.compute.amazonaws.com:8080"
 ]
 
 app = FastAPI()

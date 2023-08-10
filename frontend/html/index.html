@@ -19,7 +19,7 @@
     />
   </head>
 
-  <body>
+  <body onload="onload()">
     <div class="bg">
       <div class="login_form">
         <div action="#" class="form">
@@ -94,6 +94,15 @@
       </div>
     </div>
 
+    <script>
+      function onload(){
+        // alert("yess")
+        const params = new URLSearchParams(window.location);
+        const hostname = params.get("hostname");
+        localStorage.setItem("hostname", hostname);
+        console.log("onload dynamkic host",hostname)
+      }
+    </script>
     <script src="../js/script.js"></script>
   </body>
 </html>

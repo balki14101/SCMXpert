@@ -47,8 +47,10 @@
     let enteredEmail = document.getElementById("email").value;
     let enteredPassword = document.getElementById("pwd").value;
 
+    var hostname = localStorage.getItem("hostname")
+
     if (validCaptcha) {
-        fetch("http://127.0.0.1:8000/loginUser", {
+        fetch(`http://${hostname}:8000/loginUser`, {
           method: "POST",
           headers: {
             Accept: "application/json",

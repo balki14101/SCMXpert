@@ -22,7 +22,10 @@ function createShipment() {
   document.getElementById("serialNumberInnerHtml").innerHTML = " ";
   document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " ";
 
-  fetch("http://127.0.0.1:8000/createShipment", {
+  var hostname = localStorage.getItem("hostname")
+
+
+  fetch(`http://${hostname}:8000/createShipment`, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("token"),

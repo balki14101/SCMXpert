@@ -12,7 +12,7 @@ def generate_auth_email(email:str,key:int):
 
     subject = "Verification Code"
 
-    body = "<html> <head></head><body><p>Hi!<br>click <a href='http://localhost:5500/frontend/html/resetPassword.html?key="+str(key)+"'>here</a> to reset your password.</p></body></html>"
+    body = "<html> <head></head><body><p>Hi!<br>click <a href='http://127.0.0.1:5500/frontend/html/resetPassword.html?key="+str(key)+"'>here</a> to reset your password.</p></body></html>"
 
 
     sender_email="scmxpert1@gmail.com"

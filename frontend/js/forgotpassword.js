@@ -12,9 +12,10 @@ function forgotPassword() {
 
   // console.log("password", resetPasswordValue);
   // console.log("reenterpassword", resetReenterPasswordValue);
+  var hostname = localStorage.getItem("hostname")
 
 
-  fetch("http://127.0.0.1:8000/forgotPassword", {
+  fetch(`http://${hostname}:8000/forgotPassword`, {
       method: "POST",
       headers: {
         Accept: "application/json",

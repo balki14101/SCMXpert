@@ -2,7 +2,9 @@
 //   $('#example').dataTable();
 // });
 function datastream() {
-  fetch("http://127.0.0.1:8000/datastream", {
+  var hostname = localStorage.getItem("hostname")
+
+  fetch(`http://${hostname}:8000/datastream`, {
     method: "GET",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   })

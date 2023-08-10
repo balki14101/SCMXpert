@@ -14,9 +14,11 @@ function resetPassword() {
     console.log("email", email);
     console.log("password", resetPasswordValue);
     console.log("reenterpassword", resetReenterPasswordValue);
+      
+   var hostname = localStorage.getItem("hostname")
+
   
-  
-    fetch("http://127.0.0.1:8000/resetpassword", {
+    fetch(`http://${hostname}:8000/resetpassword`, {
         method: "POST",
         headers: {
           Accept: "application/json",

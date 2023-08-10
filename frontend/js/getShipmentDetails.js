@@ -1,5 +1,7 @@
 function getShipmentDetails() {
   role = localStorage.getItem("role");
+  var hostname = localStorage.getItem("hostname")
+
 
   let datastreamElement = document.getElementById("datastreamButton");
 
@@ -11,7 +13,7 @@ function getShipmentDetails() {
     datastreamElement.setAttribute("hidden", "hidden");
   }
 
-  fetch("http://127.0.0.1:8000/getShipments", {
+  fetch(`http://${hostname}:8000/getShipments`, {
     method: "GET",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   })

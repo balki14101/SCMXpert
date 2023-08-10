@@ -15,9 +15,10 @@ function signup() {
   document.getElementById("passwordInnerHtml").innerHTML = " ";
   document.getElementById("reenterPasswordInnerHtml").innerHTML = " ";
 
+  var hostname = localStorage.getItem("hostname")
   
   
-      fetch("http://127.0.0.1:8000/createUser", {
+      fetch(`http://${hostname}:8000/createUser`, {
         method: "POST",
         headers: {
           Accept: "application/json",
