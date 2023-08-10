@@ -14,17 +14,17 @@ socket_connection=socket.socket()
 # HOST = "root-server-1"
 # HOST= "scmxpert-server-1"
 # PORT = 5050
-HOST= os.getenv("host_name")
-PORT = int(os.getenv("port"))
+HOST='root-server-1'
+PORT = 5050
 
 
 socket_connection.connect((HOST,PORT))
 
 # bootstrap_servers = 'localhost:9092'
 # bootstrap_servers = 'root-kafka-1:9092'
-bootstrap_servers = os.getenv("bootstrap_servers")
+bootstrap_server ='root-kafka-1:9092'
 topicName = os.getenv("topic_name")
-producer = KafkaProducer(bootstrap_servers= bootstrap_servers,
+producer = KafkaProducer(bootstrap_servers= bootstrap_server,
                          retries = 5,
                          value_serializer=lambda x: json.dumps(x).encode('utf-8'))
 

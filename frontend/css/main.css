@@ -395,7 +395,6 @@ section {
     right: 0;
     visibility: hidden;
     opacity: 0;
-    display: flex;
     transition: 0.3s;
     border-radius: 4px;
     z-index: 99;
@@ -1494,7 +1493,6 @@ section {
   padding: 10px 40px;
   border-radius: 4px;
   border: 1px solid rgba(var(--color-default-rgb), 0.2);
-  transition: none;
   font-size: 16px;
   font-weight: 600;
   font-family: var(--font-primary);

@@ -173,7 +173,8 @@ async def forgot_password(new_credentials:ResetPassword):
                 return "entered password is same as old one, please enter the new password"
             else:           
                 hashed_password = pwd_context.hash(new_credentials.password)
-                users_Collection.find_one_and_update({'email':new_credentials.email},{"$set":{'password':hashed_password}})
+                users_Collection.find_one_and_update({'email':new_credentials.email},{"$set":{'password':hashed_password,"key":"null"}})
+
                 return  "password updated successfully"
         else:
             return "need to signup, no user found"
@@ -216,8 +217,16 @@ def create_user(data:ship,token:str=Depends(verify_token)):
 
     createShipment(data)
 
+    # data = shipments_Collection.find_one({'Shipment_Number':data.Shipment_Number})
+    # print(data)
+
     try:
-        shipments_Collection.insert_one({
+        findShipment = shipments_Collection.find_one({'Shipment_Number':data.Shipment_Number})
+        print(data)
+
+        if findShipment == None:
+
+            shipments_Collection.insert_one({
             'Shipment_Number':data.Shipment_Number,
             'Container_Number':data.Container_Number,
             'Delivery_Date': data.Delivery_Date,
@@ -228,11 +237,13 @@ def create_user(data:ship,token:str=Depends(verify_token)):
             'Serial_Number':data.Serial_Number,
             'Shipment_Description':data.Shipment_Description,
             'Created_by':data.Created_by,
-            'User_Id':data.User_Id
+            'User_Id':data.User_Id,
             })
-        print("success")
+            print("success")
 
-        return "shipment created successfully"
+            return "shipment created successfully"
+        else:
+                return "Duplicate Shipment"
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

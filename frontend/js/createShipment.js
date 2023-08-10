@@ -39,9 +39,8 @@ function createShipment() {
       Batch_Id: batchIdValue,
       Serial_Number: serialNumberValue,
       Shipment_Description: shipmentDescriptionValue,
-      Created_by:localStorage.getItem("role"),
+      Created_by:localStorage.getItem("username"),
       User_Id:localStorage.getItem("userId"),
-      Username:localStorage.getItem("username")
     }),
   })
     // .then((response) => response.json())
@@ -61,6 +60,9 @@ function createShipment() {
 
       if (responseJson == "shipment created successfully")
       alert(responseJson);
+      else if (responseJson == "Duplicate Shipment") {
+        alert("Duplicate Shipment");
+      }
       else if (responseJson?.detail == "Token Expired") {
         alert(responseJson?.detail);
         // window.location.href = "/frontend/html/index.html";
@@ -119,7 +121,4 @@ function clearData() {
   document.getElementById("serialNumber").value = "";
   document.getElementById("shipmentDescription").value = "";
 
-  
-  // document.getElementById("shipmentNumberInnerHtml").innerHTML = " sohdfjlkl";
-  // document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " sohdfjlkl";
 }

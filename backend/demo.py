@@ -10,20 +10,14 @@ def generate_auth_email(email:str,key:int):
 
     print("inside generate auth email")
 
-
-
-    subject = "Verification Code" + "lksndf"
+    subject = "Verification Code"
 
     body = "<html> <head></head><body><p>Hi!<br>click <a href='http://localhost:5500/frontend/html/resetPassword.html?key="+str(key)+"'>here</a> to reset your password.</p></body></html>"
 
 
-    #sender_email = config.EMAIL_ID
-
     sender_email="scmxpert1@gmail.com"
 
     receiver_email = email
-
-    #password = config.EMAIL_PWD
 
     password="mlyjkttmugfhcigo"
 

@@ -49,5 +49,4 @@ class ship(BaseModel):
     Shipment_Description: str
     Created_by:str
     User_Id:str  
-    Username:str  
 

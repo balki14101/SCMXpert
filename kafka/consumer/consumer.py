@@ -12,8 +12,8 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path=".env")
 
 # bootstrap_servers = "localhost:9092"
-# bootstrap_servers = "root-kafka-1:9092"
-bootstrap_servers = os.getenv("bootstrap_servers")
+bootstrap_server = "root-kafka-1:9092"
+# bootstrap_servers = os.getenv("bootstrap_servers")
 topicName = os.getenv("topic_name")
 
 class Device_Data(BaseModel):
@@ -24,7 +24,7 @@ class Device_Data(BaseModel):
     Route_To: str
 
 try:
-    consumer = KafkaConsumer(topicName,bootstrap_servers = bootstrap_servers,auto_offset_reset = 'latest')
+    consumer = KafkaConsumer(topicName,bootstrap_servers = bootstrap_server,auto_offset_reset = 'latest')
     
     for data in consumer:
         print(data)
