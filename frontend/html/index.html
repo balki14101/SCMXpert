@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>Login</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
@@ -10,7 +9,10 @@
     <link href="../assets/img/favicon.png" rel="icon" />
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
 
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="../css/styles.css" />
     <link
@@ -19,12 +21,14 @@
     />
   </head>
 
+  <!-- triggers a function during page load -->
   <body onload="onload()">
     <div class="bg">
       <div class="login_form">
         <div action="#" class="form">
           <h1 class="form_title">Log In</h1>
 
+          <!-- email -->
           <div class="form_div">
             <input
               type="email"
@@ -37,6 +41,7 @@
           </div>
           <p id="emailInnerHtml" class="innerHtml"></p>
 
+          <!-- password -->
           <div class="form_div">
             <input
               type="password"
@@ -49,6 +54,7 @@
           </div>
           <p id="passwordInnerHtml" class="innerHtml"></p>
 
+          <!-- forgot Password -->
           <div
             style="
               display: flex;
@@ -63,8 +69,10 @@
             </span>
           </div>
 
+          <!-- innerHtml for invalid credentials -->
           <p id="invalidCredentials" class="innerHtml"></p>
 
+          <!-- captcha -->
           <div id="captcha" class="form_div">
             <div class="preview"></div>
             <div class="captcha_form">
@@ -81,12 +89,12 @@
             </div>
           </div>
 
+          <!-- login button -->
           <div class="login_button_class">
-            <button class="form_button" type="button" onclick="loginCheck()">
-              Login
-            </button>
+            <button class="form_button" type="button">Login</button>
           </div>
 
+          <!-- navigate to signup -->
           <div class="signup_button_class">
             Don't have an account? <a href="signup.html">Create One</a>
           </div>
@@ -95,12 +103,11 @@
     </div>
 
     <script>
-      function onload(){
-        // alert("yess")
+      function onload() {
+        // for getting hostname dynamically (local and cloud)
         const params = new URLSearchParams(window.location);
         const hostname = params.get("hostname");
         localStorage.setItem("hostname", hostname);
-        console.log("onload dynamkic host",hostname)
       }
     </script>
     <script src="../js/script.js"></script>

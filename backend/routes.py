@@ -13,7 +13,7 @@ from validations import loginValid,registerValid,resetPasswordValidate,createShi
 from mongo import mongodb,users_Collection,datastream_Collection,shipments_Collection
 from models import User,Login,ship,ResetPassword,forgotPassword
 from jwt import get_token,verify_token
-from demo import generate_auth_email
+from generateEmail import generate_auth_email
 
 appRoute=APIRouter()
 
@@ -35,19 +35,13 @@ def get_users():
                "password": str(item["password"])
                })
     print(returnlist)
-    # print(dbname)
     return returnlist
 
-#get users
+#get users with query params key
 @appRoute.get("/getUser/{key}")
 def get_users(key: str):
     
-    # intKey=int(key)
-    # print(type(key))
     data = mongodb['users'].find_one({'key': key})
-    print("sdf",data)
-    
-    returnlist = {}
 
     return {"id":str(data["_id"]),
             "name":str(data["name"]),
@@ -60,13 +54,15 @@ def get_users(key: str):
 #create user
 @appRoute.post("/createUser")
 def create_user(user:User):
-    print("creating a user",user)
+    
+    # field validations
     registerValid(user)
 
     try:
         if (user.name != '') and (user.email != '') and (user.password != ''):
             findEmail = users_Collection.find_one({'email':user.email})
             if findEmail == None:
+                # password encryption
                 hashed_password = pwd_context.hash(user.password)
 
                 users_Collection.insert_one({'name':user.name,'email':user.email,'password':hashed_password,'role':user.role})
@@ -82,15 +78,15 @@ def create_user(user:User):
             detail="Bad Request",
         )   
 
-#create user
+#login user
 @appRoute.post("/loginUser")
 async def login_user(login_user:Login):
-    print("entered credentials",login_user)
-    
+
+    # field validations
     loginValid(login_user)
     try:
-        data = users_Collection.find_one({'email':login_user.email})
-        data=json.loads(json_util.dumps(data))
+        user = users_Collection.find_one({'email':login_user.email})
+        data=json.loads(json_util.dumps(user))
        
         # if check:
         if data != None:
@@ -98,14 +94,14 @@ async def login_user(login_user:Login):
             print(passwordCheck)
             
             if passwordCheck:
+                # generating JWT 
                 token = await get_token(data)
-                print(token)
-                print(type(data['_id']))
+
                 return {"message":"user already exists","token":token,"role":data['role'],"userId":data['_id'],"username":data['name']}
             else:
                 return  "user already exists, please enter the correct password"
         else:
-            return "need to signup, no user found"
+            return "no user found"
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -115,17 +111,18 @@ async def login_user(login_user:Login):
 #forgot password
 @appRoute.post("/forgotPassword")
 async def forgot_password(forgot_password_email:forgotPassword):
-    print(forgot_password_email)
-
+    
+    # field validations
     forgotPasswordValidate(forgot_password_email)
 
     try:    
-        print("forgot password credentials",forgot_password_email)
 
         data = users_Collection.find_one({'email':forgot_password_email.email})
-        print(data)
-
+        
+        # checking if email exist
         if data != None:
+            
+            # generating randow key
             key = random.randint(1000000000,9999999999)
             # printing letters
             letters = string.ascii_letters
@@ -137,14 +134,6 @@ async def forgot_password(forgot_password_email:forgotPassword):
             generate_auth_email(forgot_password_email.email,key)
 
             return "reset mail sent successfully"
-
-            # passwordCheck = pwd_context.verify(new_credentials.password, data['password'])
-            # if passwordCheck:
-            #     return "entered password is same as old one, please enter the new password"
-            # else:           
-            #     hashed_password = pwd_context.hash(new_credentials.password)
-            #     users_Collection.find_one_and_update({'email':new_credentials.email},{"$set":{'password':hashed_password}})
-            #     return  "password updated successfully"
         else:
             return "need to signup, no user found"
     except JWTError:
@@ -153,22 +142,22 @@ async def forgot_password(forgot_password_email:forgotPassword):
             detail="Unauthorized Entry",
         )        
 
-#forgot password
+#reset password
 @appRoute.post("/resetpassword")
 async def forgot_password(new_credentials:ResetPassword):
     print(new_credentials)
 
+    # field validation
     resetPasswordValidate(new_credentials)
 
     try:    
-        print("forgot password credentials",new_credentials)
-
+        # get user
         data = users_Collection.find_one({'email':new_credentials.email})
-        print(data)
-
+        
         if data != None:
-
             passwordCheck = pwd_context.verify(new_credentials.password, data['password'])
+            
+            # verifying hash_password
             if passwordCheck:
                 return "entered password is same as old one, please enter the new password"
             else:           
@@ -184,9 +173,9 @@ async def forgot_password(new_credentials:ResetPassword):
             detail="Unauthorized Entry",
         )    
 
+# datastream
 @appRoute.get("/datastream")
 async def getDataStream(tokensss:str=Depends(verify_token)):
-    print("tokennn",tokensss)
     
     try:
         data = list(datastream_Collection.find())
@@ -212,17 +201,12 @@ async def getDataStream(tokensss:str=Depends(verify_token)):
 #create user
 @appRoute.post("/createShipment")
 def create_user(data:ship,token:str=Depends(verify_token)):
-    print("tokennn",token)
-    print("creating a user",data)
 
+    # field validation
     createShipment(data)
-
-    # data = shipments_Collection.find_one({'Shipment_Number':data.Shipment_Number})
-    # print(data)
 
     try:
         findShipment = shipments_Collection.find_one({'Shipment_Number':data.Shipment_Number})
-        print(data)
 
         if findShipment == None:
 
@@ -239,7 +223,6 @@ def create_user(data:ship,token:str=Depends(verify_token)):
             'Created_by':data.Created_by,
             'User_Id':data.User_Id,
             })
-            print("success")
 
             return "shipment created successfully"
         else:
@@ -250,6 +233,7 @@ def create_user(data:ship,token:str=Depends(verify_token)):
             detail="Unauthorized Entry",
         )    
 
+# shipment details
 @appRoute.get("/getShipments")
 async def getDataStream(tokensss:str=Depends(verify_token)):
     print("tokennn",tokensss)
@@ -272,7 +256,7 @@ async def getDataStream(tokensss:str=Depends(verify_token)):
                 "Created_by": str(item["Created_by"]),
                 "User_Id": str(item["User_Id"]),
             })
-        print(returnlist)
+
         return returnlist
     except JWTError:
         raise HTTPException(

@@ -21,8 +21,6 @@ class Login(BaseModel):
 
 class forgotPassword(BaseModel):
     email: str
-    # password: str
-    # reenteredpassword:str
 
 class ResetPassword(BaseModel):
     email: str

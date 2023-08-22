@@ -1,33 +1,20 @@
 (function login() {
-  const fonts = ["cursive"];
   let captchaValue = "";
-  var validRegex =
-    "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
 
+
+  // generating captcha text
   function gencaptcha() {
     let value = btoa(Math.random() * 100000);
     value = value.substring(0, 6 + Math.random());
     captchaValue = value;
   }
-
+  // setting the captcha text in html
   function setcaptcha() {
-    let html = captchaValue
-      .split("")
-      .map((char) => {
-        const rotate = -20 + Math.trunc(Math.random() * 30);
-        const font = Math.trunc(Math.random() * fonts.length);
-        return `<span
-            style="
-            transform:rotate(${rotate}deg);
-            font-family:${font[font]};
-            "
-           >${char} </span>`;
-      })
-      .join("");
     document.querySelector(".login_form #captcha .preview").innerHTML =
       captchaValue;
   }
 
+  //initial function
   function initCaptcha() {
     document
       .querySelector(".login_form #captcha .captcha_refersh")
@@ -43,10 +30,12 @@
   initCaptcha();
 
   function loginCheck(validCaptcha) {
-    console.log("sdfds", document.getElementById("pwd").value);
+
+    //getting entered credentails
     let enteredEmail = document.getElementById("email").value;
     let enteredPassword = document.getElementById("pwd").value;
 
+    // getting the hostname
     var hostname = localStorage.getItem("hostname")
 
     if (validCaptcha) {

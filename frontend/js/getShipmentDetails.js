@@ -1,18 +1,19 @@
 function getShipmentDetails() {
+  // data from localStorage
   role = localStorage.getItem("role");
   var hostname = localStorage.getItem("hostname")
 
-
+  // nav-button
   let datastreamElement = document.getElementById("datastreamButton");
 
-  console.log("role from home.js", role);
-
+  // role condition
   if (role == "Admin") {
     datastreamElement.removeAttribute("hidden");
   } else if (role == "User") {
     datastreamElement.setAttribute("hidden", "hidden");
   }
 
+  // api
   fetch(`http://${hostname}:8000/getShipments`, {
     method: "GET",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -32,8 +33,7 @@ function getShipmentDetails() {
         window.location.href = "../html/index.html";
       }
 
-      console.log("mano katta", responseJson);
-
+      // shows all shipments for admin
       if (localStorage.getItem("role") == "Admin") {
         for (var i = 0; i < responseJson.length; i++) {
           var row =
@@ -68,20 +68,17 @@ function getShipmentDetails() {
             "<td>" +
             responseJson[i].Created_by +
             "</td>";
-          // +
-          // "</tr>";
+
           document.getElementById("result").innerHTML += row;
         }
       $('#myTable').dataTable();
 
-      } else if (localStorage.getItem("role") == "User") {
+      }
+      // to show shipments created by the particular user 
+      else if (localStorage.getItem("role") == "User") { 
         for (var i = 0; i < responseJson.length; i++) {
-          // if(responseJson[i].Created_by=="User"){
           if (responseJson[i].User_Id == localStorage.getItem("userId")) {
             var row =
-              // "<tr>" +
-              // `<tr style="text-align: center; background-color: blue;padding:16px">` +
-
               `<td style="text-align: center;padding:16px">` +
               responseJson[i].Shipment_Number +
               "</td>" +
@@ -112,8 +109,7 @@ function getShipmentDetails() {
               "<td>" +
               responseJson[i].Created_by +
               "</td>";
-            // +
-            // "</tr>";
+              
             document.getElementById("result").innerHTML += row;
           }
         }

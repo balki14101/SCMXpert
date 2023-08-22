@@ -1,4 +1,5 @@
 function createShipment() {
+  // getting field values
   var shipmentNumberValue = document.getElementById("shipmentNumber").value;
   var containerNumberValue = document.getElementById("containerNumber").value;
   var deliveryDateValue = document.getElementById("deliveryDate").value;
@@ -11,7 +12,7 @@ function createShipment() {
     "shipmentDescription"
   ).value;
 
-
+  // declaring innerHtml values
   document.getElementById("shipmentNumberInnerHtml").innerHTML = " ";
   document.getElementById("containerNumberInnerHtml").innerHTML = " ";
   document.getElementById("deliveryDateInnerHtml").innerHTML = " ";
@@ -22,9 +23,11 @@ function createShipment() {
   document.getElementById("serialNumberInnerHtml").innerHTML = " ";
   document.getElementById("shipmentDescriptionInnerHtml").innerHTML = " ";
 
+  // hostname
   var hostname = localStorage.getItem("hostname")
 
 
+  // api
   fetch(`http://${hostname}:8000/createShipment`, {
     method: "POST",
     headers: {
@@ -46,26 +49,29 @@ function createShipment() {
       User_Id:localStorage.getItem("userId"),
     }),
   })
-    // .then((response) => response.json())
+    // api validation
     .then(response => {
       if(response.ok){
-        console.log("success signup",response)
+        console.log("success ",response)
         return response.json()
       } 
-      console.log("fail signup",response)
+      console.log("fail ",response)
       
       return response.json()
       .then(response => {throw new Error(response.detail)})
     })
-
+    // success response
     .then((responseJson) => {
-      console.log("shipment created successfully", responseJson);
-
-      if (responseJson == "shipment created successfully")
+      console.log("shipment response ", responseJson)
+      if (responseJson == "shipment created successfully"){
       alert(responseJson);
-      else if (responseJson == "Duplicate Shipment") {
-        alert("Duplicate Shipment");
+      clearData()
       }
+      // to avoid duplicate shipments
+      else if (responseJson == "Duplicate Shipment") {
+        alert("Duplicate Shipment. Shipment number shouldn't be same");
+      }
+      // condition for token expire
       else if (responseJson?.detail == "Token Expired") {
         alert(responseJson?.detail);
         // window.location.href = "/frontend/html/index.html";
@@ -114,6 +120,7 @@ function createShipment() {
     });
 }
 
+//clear field data
 function clearData() {
   document.getElementById("shipmentNumber").value = "";
   document.getElementById("containerNumber").value = "";

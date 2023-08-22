@@ -68,7 +68,6 @@
             <li><a href="home.html#">Home</a></li>
             <li id="datastreamButton"><a href="./data.html">Datastream</a></li>
             <li><a href="./createShipment.html">Create Shipment</a></li>
-            <!-- <li id="shipmentsButton"><a href="./shipments.html">Shipments</a></li> -->
             <li><a href="./shipments.html" class="active">Shipments</a></li>
             <li><a href="./index.html">Logout</a></li>
           </ul>
@@ -108,6 +107,7 @@
             "
             class="table table-striped"
           >
+            <!-- table header -->
             <thead>
               <tr>
                 <th
@@ -212,11 +212,11 @@
                 </th>
               </tr>
             </thead>
+            <!-- table content -->
             <tbody id="result"></tbody>
           </table>
         </div>
         <div style="margin-top: 150px"></div>
-
       </section>
 
       <!-- </div> -->
@@ -235,7 +235,6 @@
     <script src="../js/roleCheck.js"></script>
     <script>
       function onloadFunction() {
-        // roleCheck()
         getShipmentDetails();
       }
     </script>

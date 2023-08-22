@@ -11,13 +11,16 @@
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <!-- Font -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
   </head>
   <body>
     <div class="bg">
       <div class="signup_form">
         <div action="#" class="form">
           <h1 class="form_title">Create an Account</h1>
-
+          <!-- username -->
           <div class="form_div">
             <input
               type="text"
@@ -30,6 +33,7 @@
           </div>
           <p id="usernameInnerHtml" class="innerHtml"></p>
 
+          <!-- email -->
           <div class="form_div">
             <input
               type="email"
@@ -42,6 +46,7 @@
           </div>
           <p id="emailInnerHtml" class="innerHtml"></p>
 
+          <!-- password -->
           <div class="form_div">
             <input
               type="password"
@@ -55,6 +60,7 @@
           </div>
           <p id="passwordInnerHtml" class="innerHtml"></p>
 
+          <!-- reenter password -->
           <div class="form_div">
             <input
               type="password"
@@ -67,11 +73,14 @@
           </div>
           <p id="reenterPasswordInnerHtml" class="innerHtml"></p>
 
+          <!-- create button -->
           <div class="login_button_class">
             <button class="signup-button" type="button" onclick="signup()">
               Create Account
             </button>
           </div>
+          
+          <!-- navigate to login -->
           <div class="to_login_button_class">
             Already having an account?
             <a href="index.html">Login</a>

@@ -1,9 +1,9 @@
-// $(document).ready(function(){
-//   $('#example').dataTable();
-// });
+
 function datastream() {
+  // hostname
   var hostname = localStorage.getItem("hostname")
 
+  // api
   fetch(`http://${hostname}:8000/datastream`, {
     method: "GET",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -21,7 +21,8 @@ function datastream() {
         // window.location.href = "/frontend/html/index.html";
         window.location.href = "../html/index.html";
       }
-
+      
+      // appending data to each table rows
       for (var i = 0; i < responseJson.length; i++) {
         var row =
           "<tr>" +

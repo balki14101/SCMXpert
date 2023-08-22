@@ -1,20 +1,20 @@
-var validEmail = false;
-var validPassword = false;
 
 function signup() {
+  // getting the field values from html
   const signupUsernameValue = document.getElementById("signupUsername").value;
   const signupEmailValue = document.getElementById("signupEmail").value;
   const signupPasswordValue = document.getElementById("enterpassword").value;
   const signupReenterPasswordValue =
     document.getElementById("reenterpassword").value;
 
-  // signupUsernameValue.innerHTML = name; // harmless in this case
 
+  // declaring innerHtml
   document.getElementById("usernameInnerHtml").innerHTML = " ";
   document.getElementById("emailInnerHtml").innerHTML = " ";
   document.getElementById("passwordInnerHtml").innerHTML = " ";
   document.getElementById("reenterPasswordInnerHtml").innerHTML = " ";
 
+  // getting the hostname
   var hostname = localStorage.getItem("hostname")
   
   
@@ -52,7 +52,8 @@ function signup() {
             // window.location.href = "/frontend/html/index.html";
             window.location.href = "../html/index.html";
           }
-          alert(responseJson);
+          else
+            alert(responseJson);
         })
         
         .catch((error) => {

@@ -9,6 +9,7 @@ import os
 
 from dotenv import load_dotenv
 
+# from env
 load_dotenv(dotenv_path=".env")
 
 # bootstrap_servers = "localhost:9092"

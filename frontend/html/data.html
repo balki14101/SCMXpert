@@ -43,6 +43,7 @@
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
   </head>
 
+  <!-- fetching data on page load -->
   <body class="home-page" onload="datastream()">
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -53,8 +54,6 @@
           href="home.html"
           class="logo d-flex align-items-center me-auto me-xl-0"
         >
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
           <h1>SCXMEXPERTLite</h1>
           <span>.</span>
         </a>
@@ -95,6 +94,7 @@
                     font-size: large;
                     padding: 4px;
                     width: 10%;
+                    font-family:Poppins;
                   "
                 >
                   Device ID
@@ -141,6 +141,7 @@
                 </th>
               </tr>
             </thead>
+        <!-- table content -->
              <tbody id="result">
                     
                     </tbody>
